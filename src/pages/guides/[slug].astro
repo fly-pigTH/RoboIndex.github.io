@@ -1,0 +1,118 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({
+    params: { slug: guide.id },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const lang: Lang = getLangFromUrl(Astro.url);
+const d = guide.data;
+
+function lh(path: string): string {
+  if (lang === 'en') return `${path}${path.includes('?') ? '&' : '?'}lang=en`;
+  return path;
+}
+
+function localized<T extends string>(zh: T, en: T): T {
+  return lang === 'en' ? en : zh;
+}
+---
+
+<BaseLayout title={localized(d.title, d.title_en)} description={localized(d.summary, d.summary_en)} lang={lang}>
+  <a class="back-link" href={lh('/guides/')}>
+    &larr; {t(lang, 'backToGuides')}
+  </a>
+
+  <!-- Header -->
+  <section class="paper-detail-hero reveal">
+    <span class="tag active" style="margin-bottom: 12px; display: inline-flex;">{d.venue}</span>
+    <h1>{localized(d.title, d.title_en)}</h1>
+    <p style="color: var(--muted); margin: 12px 0 0; max-width: 72ch;">
+      {localized(d.summary, d.summary_en)}
+    </p>
+    <p style="margin: 12px 0 0; font-size: 0.85rem; color: var(--muted);">
+      {t(lang, 'attribution')}: {d.author} ({d.updated})
+    </p>
+  </section>
+
+  <!-- Phases -->
+  <section class="section reveal">
+    <h2 style="margin-bottom: 16px;">{t(lang, 'phase')}</h2>
+    <div class="card-grid two">
+      {d.phases.map((phase) => (
+        <div class="phase-card">
+          <div class="phase-head">
+            <span class="phase-emoji">{phase.emoji}</span>
+            <div class="phase-meta">
+              <h3>{localized(phase.stage, phase.stage_en)}</h3>
+              <span class="phase-window">{localized(phase.window, phase.window_en)}</span>
+            </div>
+          </div>
+          <p class="phase-line">
+            <strong>{t(lang, 'focus')}:</strong> {localized(phase.focus, phase.focus_en)}
+          </p>
+          <p class="phase-line">
+            <strong>{t(lang, 'deliverables')}:</strong> {localized(phase.deliverables, phase.deliverables_en)}
+          </p>
+          <p class="phase-alert">{localized(phase.alert, phase.alert_en)}</p>
+          <div class="phase-meter">
+            <span style={`width: ${phase.progress}%`}></span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Checklist + Pitfalls -->
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 26px;">
+    <section class="section reveal" style="margin-top: 0;">
+      <h2 style="margin-bottom: 6px;">{t(lang, 'checklist')}</h2>
+      <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 14px;">{t(lang, 'checklistIntro')}</p>
+      <div class="checklist-grid">
+        {d.checklist.map((item) => (
+          <div class="checklist-item">
+            <span class="checklist-icon">{item.emoji}</span>
+            <p>{localized(item.text, item.text_en)}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section reveal" style="margin-top: 0;">
+      <h2 style="margin-bottom: 6px;">{t(lang, 'pitfalls')}</h2>
+      <p style="color: var(--muted); font-size: 0.88rem; margin-bottom: 14px;">{t(lang, 'pitfallsIntro')}</p>
+      <div class="checklist-grid">
+        {d.pitfalls.map((item) => (
+          <div class="checklist-item">
+            <span class="checklist-icon">{item.emoji}</span>
+            <p>{localized(item.text, item.text_en)}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <!-- Official Links -->
+  <section class="section reveal">
+    <h2 style="margin-bottom: 16px;">{t(lang, 'officialLinks')}</h2>
+    <div class="card-grid three">
+      {d.links.map((link) => (
+        <a class="link-card" href={link.url} target="_blank" rel="noreferrer">
+          <div class="link-card-top">
+            <span class="link-card-emoji">{link.emoji}</span>
+            <h4>{localized(link.name, link.name_en)}</h4>
+          </div>
+          <p>{localized(link.desc, link.desc_en)}</p>
+          <span class="cta">{t(lang, 'openLink')} &rarr;</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

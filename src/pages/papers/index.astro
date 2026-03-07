@@ -1,0 +1,164 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PaperCard from '@/components/PaperCard.astro';
+import { getCollection } from 'astro:content';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+const lang: Lang = getLangFromUrl(Astro.url);
+
+const allPapers = await getCollection('papers');
+const papers = allPapers.sort((a, b) => b.data.date_added.localeCompare(a.data.date_added));
+
+const venues = [...new Set(papers.flatMap((p) => p.data.venue.split(' / ')))].sort();
+const allTags = [...new Set(papers.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout title={t(lang, 'allPapers')} description={t(lang, 'allPapersDesc')} lang={lang}>
+
+  <section class="hero reveal" style="padding: 36px 40px;">
+    <h1 style="font-size: clamp(1.5rem, 3vw, 2.2rem);">{t(lang, 'allPapers')}</h1>
+    <p class="hero-subtitle">{t(lang, 'allPapersDesc')}</p>
+
+    <div class="search-wrapper" style="max-width: 560px; margin: 20px auto 0;">
+      <span class="search-icon">&#x1F50D;</span>
+      <input
+        type="text"
+        id="paper-search"
+        class="search-input-page"
+        placeholder={t(lang, 'heroSearch')}
+        autocomplete="off"
+      />
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <!-- Venue filter -->
+    <div class="filter-bar" id="venue-filter">
+      <button class="filter-btn active" data-venue="all">{t(lang, 'filterAll')}</button>
+      {venues.map((v) => (
+        <button class="filter-btn" data-venue={v}>{v}</button>
+      ))}
+    </div>
+
+    <!-- Tag filter -->
+    <div class="filter-bar" id="tag-filter" style="margin-bottom: 16px;">
+      {allTags.map((tag) => (
+        <button class="filter-btn" data-tag={tag}>{tag}</button>
+      ))}
+    </div>
+
+    <p class="paper-count" id="paper-count">
+      <span id="count-num">{papers.length}</span> {t(lang, 'paperCount')}
+    </p>
+
+    <div class="card-grid four" id="paper-grid">
+      {papers.map((paper) => (
+        <div
+          class="paper-item"
+          data-title={paper.data.title.toLowerCase()}
+          data-abstract={(paper.data.abstract ?? '').toLowerCase()}
+          data-venue={paper.data.venue}
+          data-tags={paper.data.tags.join(',')}
+        >
+          <PaperCard
+            slug={paper.id}
+            title={paper.data.title}
+            venue={paper.data.venue}
+            year={paper.data.year}
+            abstract={paper.data.abstract}
+            tags={paper.data.tags}
+            preview_image={paper.data.preview_image}
+            preview_video={paper.data.preview_video}
+            lang={lang}
+          />
+        </div>
+      ))}
+    </div>
+
+    <p class="no-results" id="no-results" style="display: none;">
+      {t(lang, 'noResults')}
+    </p>
+  </section>
+
+  <script>
+    const searchInput = document.getElementById('paper-search') as HTMLInputElement;
+    const items = document.querySelectorAll('.paper-item') as NodeListOf<HTMLElement>;
+    const countEl = document.getElementById('count-num')!;
+    const noResults = document.getElementById('no-results')!;
+    const grid = document.getElementById('paper-grid')!;
+
+    let activeVenue = 'all';
+    let activeTag = '';
+    let searchQuery = '';
+
+    // Read initial query from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialQ = urlParams.get('q');
+    if (initialQ && searchInput) {
+      searchInput.value = initialQ;
+      searchQuery = initialQ.toLowerCase();
+    }
+
+    function filterPapers() {
+      let visible = 0;
+      items.forEach((item) => {
+        const title = item.dataset.title ?? '';
+        const abstract = item.dataset.abstract ?? '';
+        const venue = item.dataset.venue ?? '';
+        const tags = item.dataset.tags ?? '';
+
+        const matchVenue = activeVenue === 'all' || venue.includes(activeVenue);
+        const matchTag = !activeTag || tags.split(',').includes(activeTag);
+        const matchSearch = !searchQuery ||
+          title.includes(searchQuery) ||
+          abstract.includes(searchQuery) ||
+          tags.includes(searchQuery);
+
+        const show = matchVenue && matchTag && matchSearch;
+        item.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      countEl.textContent = String(visible);
+      noResults.style.display = visible === 0 ? '' : 'none';
+      grid.style.display = visible === 0 ? 'none' : '';
+    }
+
+    // Venue filter
+    document.querySelectorAll('#venue-filter .filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#venue-filter .filter-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeVenue = (btn as HTMLElement).dataset.venue ?? 'all';
+        filterPapers();
+      });
+    });
+
+    // Tag filter
+    document.querySelectorAll('#tag-filter .filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tag = (btn as HTMLElement).dataset.tag ?? '';
+        if (activeTag === tag) {
+          activeTag = '';
+          btn.classList.remove('active');
+        } else {
+          document.querySelectorAll('#tag-filter .filter-btn').forEach((b) => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeTag = tag;
+        }
+        filterPapers();
+      });
+    });
+
+    // Search
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        searchQuery = searchInput.value.trim().toLowerCase();
+        filterPapers();
+      });
+    }
+
+    // Run initial filter
+    filterPapers();
+  </script>
+</BaseLayout>

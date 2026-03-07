@@ -1,0 +1,30 @@
+---
+import { t, type Lang } from '@/i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+function localizedHref(path: string): string {
+  if (lang === 'en') return `${path}${path.includes('?') ? '&' : '?'}lang=en`;
+  return path;
+}
+---
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <h3>RoboIndex</h3>
+    <p>{t(lang, 'footerTagline')}</p>
+  </div>
+
+  <div class="footer-links">
+    <a href={localizedHref('/papers/')}>{t(lang, 'navPapers')}</a>
+    <a href={localizedHref('/guides/')}>{t(lang, 'navGuides')}</a>
+    <a href={localizedHref('/contribute/')}>{t(lang, 'navContribute')}</a>
+    <a href="https://github.com/RoboIndex/RoboIndex.github.io" target="_blank" rel="noreferrer">GitHub</a>
+  </div>
+
+  <p class="footer-credit">{t(lang, 'footerCredit')}</p>
+</footer>

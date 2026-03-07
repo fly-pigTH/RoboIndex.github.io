@@ -1,0 +1,14 @@
+title: "Skill-Critic"
+venue: "RA-L / IROS"
+year: 2024
+authors:
+  - "Ce Hao"
+abstract: "Refining Learned Skills for Hierarchical Reinforcement Learning."
+tags:
+  - hierarchical-rl
+  - skill-learning
+  - reinforcement-learning
+project_page: "https://sites.google.com/view/skill-critic"
+preview_image: "/paper-previews/skill-critic.png"
+preview_video: "/paper-previews/skill-critic.mp4"
+date_added: "2026-02-27"

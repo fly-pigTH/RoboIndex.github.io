@@ -1,0 +1,12 @@
+title: "RISE"
+venue: "IROS"
+year: 2024
+authors: []
+abstract: "3D perception-driven real-world robot imitation learning policy."
+tags:
+  - imitation-learning
+  - 3d-perception
+  - policy
+repo: "https://github.com/rise-policy/RISE"
+preview_image: "/paper-previews/rise.png"
+date_added: "2026-02-27"

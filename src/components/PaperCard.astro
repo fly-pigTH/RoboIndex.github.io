@@ -1,0 +1,34 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  venue: string;
+  year: number;
+  abstract?: string;
+  tags: string[];
+  preview_image?: string;
+  preview_video?: string;
+  lang?: string;
+}
+
+const { slug, title, venue, year, abstract, tags, preview_image, preview_video, lang } = Astro.props;
+const href = lang === 'en' ? `/papers/${slug}/?lang=en` : `/papers/${slug}/`;
+---
+
+<a class="paper-card" href={href}>
+  <div class="paper-card-cover">
+    {preview_video ? (
+      <video src={preview_video} autoplay muted loop playsinline poster={preview_image}></video>
+    ) : preview_image ? (
+      <img src={preview_image} alt={`${title} preview`} loading="lazy" />
+    ) : null}
+    <span class="paper-card-badge">{venue} {year}</span>
+  </div>
+  <div class="paper-card-body">
+    <h3>{title}</h3>
+    {abstract && <p class="abstract">{abstract}</p>}
+    <div class="paper-card-tags">
+      {tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+  </div>
+</a>

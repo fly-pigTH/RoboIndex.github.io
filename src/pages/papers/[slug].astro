@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PaperCard from '@/components/PaperCard.astro';
+import { getCollection } from 'astro:content';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+export async function getStaticPaths() {
+  const papers = await getCollection('papers');
+  return papers.map((paper) => ({
+    params: { slug: paper.id },
+    props: { paper },
+  }));
+}
+
+const { paper } = Astro.props;
+const lang: Lang = getLangFromUrl(Astro.url);
+const d = paper.data;
+
+function lh(path: string): string {
+  if (lang === 'en') return `${path}${path.includes('?') ? '&' : '?'}lang=en`;
+  return path;
+}
+
+// Related papers: same venue or overlapping tags
+const allPapers = await getCollection('papers');
+const related = allPapers
+  .filter((p) => p.id !== paper.id)
+  .map((p) => {
+    const tagOverlap = p.data.tags.filter((tag) => d.tags.includes(tag)).length;
+    const venueMatch = p.data.venue === d.venue ? 1 : 0;
+    return { paper: p, score: tagOverlap + venueMatch };
+  })
+  .filter((r) => r.score > 0)
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3)
+  .map((r) => r.paper);
+---
+
+<BaseLayout title={d.title} description={d.abstract ?? ''} lang={lang}>
+  <a class="back-link" href={lh('/papers/')}>
+    &larr; {t(lang, 'backToPapers')}
+  </a>
+
+  <section class="paper-detail-hero reveal">
+    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
+      <span class="tag active">{d.venue}</span>
+      <span class="tag active">{d.year}</span>
+    </div>
+
+    <h1>{d.title}</h1>
+
+    {d.authors && d.authors.length > 0 && (
+      <div class="paper-meta">
+        <div class="paper-meta-item">
+          <strong>{t(lang, 'authors')}:</strong>
+          <span>{d.authors.join(', ')}</span>
+        </div>
+      </div>
+    )}
+
+    {d.abstract && (
+      <p style="color: var(--muted); max-width: 72ch; margin: 12px 0 0;">{d.abstract}</p>
+    )}
+
+    <div class="paper-card-tags" style="margin-top: 16px;">
+      {d.tags.map((tag) => <span class="tag">{tag}</span>)}
+    </div>
+
+    <div class="paper-links">
+      {d.repo && (
+        <a class="btn btn-primary" href={d.repo} target="_blank" rel="noreferrer">
+          {t(lang, 'repo')}
+        </a>
+      )}
+      {d.project_page && (
+        <a class="btn btn-secondary" href={d.project_page} target="_blank" rel="noreferrer">
+          {t(lang, 'projectPage')}
+        </a>
+      )}
+      {d.arxiv && (
+        <a class="btn btn-outline" href={d.arxiv} target="_blank" rel="noreferrer">
+          {t(lang, 'arxiv')}
+        </a>
+      )}
+      {d.pdf && (
+        <a class="btn btn-outline" href={d.pdf} target="_blank" rel="noreferrer">
+          {t(lang, 'pdf')}
+        </a>
+      )}
+    </div>
+  </section>
+
+  {(d.preview_video || d.preview_image) && (
+    <section class="paper-media reveal" style="margin-top: 26px;">
+      {d.preview_video ? (
+        <video src={d.preview_video} controls muted loop playsinline poster={d.preview_image}></video>
+      ) : d.preview_image ? (
+        <img src={d.preview_image} alt={`${d.title} preview`} />
+      ) : null}
+    </section>
+  )}
+
+  {related.length > 0 && (
+    <section class="section reveal">
+      <div class="section-head">
+        <h2>{t(lang, 'relatedPapers')}</h2>
+      </div>
+      <div class="card-grid three">
+        {related.map((p) => (
+          <PaperCard
+            slug={p.id}
+            title={p.data.title}
+            venue={p.data.venue}
+            year={p.data.year}
+            abstract={p.data.abstract}
+            tags={p.data.tags}
+            preview_image={p.data.preview_image}
+            preview_video={p.data.preview_video}
+            lang={lang}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

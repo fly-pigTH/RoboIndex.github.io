@@ -1,0 +1,36 @@
+---
+import { t, type Lang } from '@/i18n/index';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const otherLang = lang === 'en' ? 'zh' : 'en';
+
+function localizedHref(path: string): string {
+  if (lang === 'en') return `${path}${path.includes('?') ? '&' : '?'}lang=en`;
+  return path;
+}
+---
+
+<header class="site-header">
+  <a class="brand" href={localizedHref('/')}>
+    <span class="brand-mark">RI</span>
+    <span>RoboIndex</span>
+  </a>
+
+  <nav class="site-nav">
+    <a href={localizedHref('/papers/')}>{t(lang, 'navPapers')}</a>
+    <a href={localizedHref('/guides/')}>{t(lang, 'navGuides')}</a>
+    <a href={localizedHref('/contribute/')}>{t(lang, 'navContribute')}</a>
+    <a href={localizedHref('/about/')}>{t(lang, 'navAbout')}</a>
+  </nav>
+
+  <div class="header-actions">
+    <div class="lang-switch">
+      <a class:list={['lang-btn', { active: lang === 'zh' }]} href={Astro.url.pathname}>中文</a>
+      <a class:list={['lang-btn', { active: lang === 'en' }]} href={`${Astro.url.pathname}?lang=en`}>EN</a>
+    </div>
+  </div>
+</header>

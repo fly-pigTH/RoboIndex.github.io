@@ -1,0 +1,76 @@
+name: Share Submission Experience
+description: Share your journal/conference submission experience
+title: "[Experience] "
+labels: ["experience", "content"]
+body:
+  - type: dropdown
+    id: venue
+    attributes:
+      label: Venue
+      options:
+        - RA-L
+        - ICRA
+        - IROS
+        - CoRL
+        - RSS
+        - T-RO
+        - Science Robotics
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Submission Year
+      placeholder: "2025"
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      options:
+        - Accepted
+        - Rejected
+        - Under Review
+        - Revise and Resubmit
+    validations:
+      required: true
+
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Timeline
+      placeholder: |
+        - Submitted: YYYY-MM-DD
+        - First decision: YYYY-MM-DD
+        - R&R submitted: YYYY-MM-DD
+        - Final decision: YYYY-MM-DD
+
+  - type: textarea
+    id: key_lessons
+    attributes:
+      label: Key Lessons / Tips
+      placeholder: "What did you learn from this submission?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: pitfalls
+    attributes:
+      label: Pitfalls to Avoid
+      placeholder: "What mistakes did you make or nearly make?"
+
+  - type: textarea
+    id: rebuttal_tips
+    attributes:
+      label: Rebuttal Strategy (if applicable)
+      placeholder: "How did you approach the rebuttal?"
+
+  - type: checkboxes
+    id: anonymous
+    attributes:
+      label: Attribution
+      options:
+        - label: I agree to have my experience shared (anonymized if preferred)
+          required: true

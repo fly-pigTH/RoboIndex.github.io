@@ -1,0 +1,80 @@
+name: Add Paper
+description: Submit a new robotics paper to RoboIndex
+title: "[Paper] "
+labels: ["paper", "content"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Paper Title
+      placeholder: "e.g., EquiMus"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: venue
+    attributes:
+      label: Venue
+      options:
+        - ICRA
+        - IROS
+        - RA-L
+        - CoRL
+        - RSS
+        - T-RO
+        - Science Robotics
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: year
+    attributes:
+      label: Year
+      placeholder: "2025"
+    validations:
+      required: true
+
+  - type: input
+    id: authors
+    attributes:
+      label: Authors (comma-separated)
+      placeholder: "Author A, Author B"
+
+  - type: textarea
+    id: abstract
+    attributes:
+      label: Abstract / One-line Summary
+      placeholder: "Brief description of the paper"
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags (comma-separated)
+      placeholder: "manipulation, reinforcement-learning, simulation"
+    validations:
+      required: true
+
+  - type: input
+    id: repo
+    attributes:
+      label: Code Repository URL
+      placeholder: "https://github.com/user/repo"
+
+  - type: input
+    id: project_page
+    attributes:
+      label: Project Page URL
+      placeholder: "https://project.github.io"
+
+  - type: input
+    id: arxiv
+    attributes:
+      label: arXiv URL
+      placeholder: "https://arxiv.org/abs/xxxx.xxxxx"
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Additional Notes
+      placeholder: "Any extra context about this paper"

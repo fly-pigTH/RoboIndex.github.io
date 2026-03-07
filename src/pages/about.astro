@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+const lang: Lang = getLangFromUrl(Astro.url);
+---
+
+<BaseLayout title={t(lang, 'aboutTitle')} description={t(lang, 'aboutSubtitle')} lang={lang}>
+
+  <section class="hero reveal" style="padding: 36px 40px;">
+    <h1 style="font-size: clamp(1.5rem, 3vw, 2.2rem);">{t(lang, 'aboutTitle')}</h1>
+    <p class="hero-subtitle">{t(lang, 'aboutSubtitle')}</p>
+  </section>
+
+  <section class="section reveal">
+    <div class="card-grid two">
+      <div class="feature-card">
+        <h3>{lang === 'en' ? 'Core Belief' : '核心理念'}</h3>
+        <p>{lang === 'en'
+          ? 'In the agent era, writing is a core capability. Data assets and entry-point ownership define long-term impact.'
+          : '在 Agent 时代，写作能力是科研者的核心竞争力；数据资产与入口能力将决定长期影响力。'}</p>
+        <blockquote style="margin: 14px 0 0; padding: 10px 14px; border-left: 4px solid rgba(15,118,110,0.35); background: rgba(15,118,110,0.07); border-radius: 0 8px 8px 0;">
+          Writing is the distilled skill of human intelligence in the agent era; data is the asset, and the entrance is the power.
+        </blockquote>
+      </div>
+
+      <div class="feature-card">
+        <h3>{lang === 'en' ? 'Target Users' : '核心用户'}</h3>
+        <ul style="margin: 8px 0 0; padding-left: 18px; color: var(--ink);">
+          <li>{lang === 'en' ? 'PhD students and researchers' : '博士生 / 科研人员'}</li>
+          <li>{lang === 'en' ? 'Early-stage authors' : '初级科研者（投稿经验匮乏）'}</li>
+          <li>{lang === 'en' ? 'Robotics engineers' : '机器人领域工程师'}</li>
+          <li>{lang === 'en' ? 'Lab-level research teams' : '实验室研究团队'}</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <h2 style="margin-bottom: 16px;">{lang === 'en' ? 'Differentiation' : '差异化定位'}</h2>
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; min-width: 600px; background: var(--surface-solid); border-radius: var(--radius-md); overflow: hidden;">
+        <thead>
+          <tr>
+            <th style="padding: 11px 12px; text-align: left; color: #f8fbfa; background: linear-gradient(120deg, #0f766e, #1f8f83);">
+              {lang === 'en' ? 'Platform' : '平台'}
+            </th>
+            <th style="padding: 11px 12px; text-align: left; color: #f8fbfa; background: linear-gradient(120deg, #0f766e, #1f8f83);">
+              {lang === 'en' ? 'Paper Index' : '论文索引'}
+            </th>
+            <th style="padding: 11px 12px; text-align: left; color: #f8fbfa; background: linear-gradient(120deg, #0f766e, #1f8f83);">
+              {lang === 'en' ? 'Submission Exp.' : '投稿经验'}
+            </th>
+            <th style="padding: 11px 12px; text-align: left; color: #f8fbfa; background: linear-gradient(120deg, #0f766e, #1f8f83);">
+              {lang === 'en' ? 'Open-Source' : '开源聚合'}
+            </th>
+            <th style="padding: 11px 12px; text-align: left; color: #f8fbfa; background: linear-gradient(120deg, #0f766e, #1f8f83);">
+              {lang === 'en' ? 'Community' : '社区互动'}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            { name: 'Google Scholar', pi: true, se: false, os: false, cm: false },
+            { name: 'OpenReview', pi: true, se: false, os: false, cm: false },
+            { name: 'Papers with Code', pi: true, se: false, os: true, cm: false },
+            { name: 'RoboIndex', pi: true, se: true, os: true, cm: true },
+          ].map((row) => (
+            <tr>
+              <td style="padding: 11px 12px; border-bottom: 1px solid rgba(208,219,211,0.8); font-weight: 600;">
+                {row.name}
+              </td>
+              {[row.pi, row.se, row.os, row.cm].map((v) => (
+                <td style={`padding: 11px 12px; border-bottom: 1px solid rgba(208,219,211,0.8); font-weight: 700; color: ${v ? '#0e8f63' : '#82909a'};`}>
+                  {v ? '\u2714' : '\u2715'}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <h2 style="margin-bottom: 16px;">{lang === 'en' ? 'Roadmap' : '发展路线'}</h2>
+    <div class="card-grid three">
+      {[
+        {
+          stage: lang === 'en' ? 'Phase 1' : '阶段 1',
+          title: lang === 'en' ? 'MVP Launch' : 'MVP 启动',
+          text: lang === 'en'
+            ? 'Static site, first batch of papers and guides, community seeding.'
+            : '静态网站上线，首批论文/经验内容展示与社群冷启动。',
+        },
+        {
+          stage: lang === 'en' ? 'Phase 2' : '阶段 2',
+          title: lang === 'en' ? 'Community Growth' : '社区成长',
+          text: lang === 'en'
+            ? 'Tagging system, contributor incentives, content management.'
+            : '标签系统、贡献者机制与内容管理后台，提升活跃度。',
+        },
+        {
+          stage: lang === 'en' ? 'Phase 3' : '阶段 3',
+          title: lang === 'en' ? 'API & Service Layer' : 'API 与服务化',
+          text: lang === 'en'
+            ? 'Structured data APIs for trend analysis and agent integration.'
+            : '开放结构化数据接口，支持趋势分析与 Agent 调用场景。',
+        },
+      ].map((item) => (
+        <div class="feature-card">
+          <div class="feature-icon">{item.stage}</div>
+          <h3>{item.title}</h3>
+          <p>{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section reveal">
+    <h2 style="margin-bottom: 6px;">{lang === 'en' ? 'Governance' : '治理原则'}</h2>
+    <p style="color: var(--muted); margin-bottom: 16px;">
+      {lang === 'en'
+        ? 'RoboIndex is committed to transparent, community-driven governance.'
+        : 'RoboIndex 坚持透明、社区驱动的治理原则。'}
+    </p>
+    <div class="card-grid four">
+      {[
+        { title: lang === 'en' ? 'Decentralized' : '去中心化', text: lang === 'en' ? 'No single gatekeeper' : '无单一控制者' },
+        { title: lang === 'en' ? 'Transparent' : '透明规则', text: lang === 'en' ? 'Open content standards' : '公开内容标准' },
+        { title: lang === 'en' ? 'Ethical' : '伦理清晰', text: lang === 'en' ? 'No paid consulting' : '不涉及付费辅导' },
+        { title: lang === 'en' ? 'Open Source' : '开源协作', text: lang === 'en' ? 'Apache 2.0 license' : 'Apache 2.0 协议' },
+      ].map((item) => (
+        <div class="feature-card" style="text-align: center;">
+          <h3 style="font-size: 0.95rem;">{item.title}</h3>
+          <p style="font-size: 0.85rem;">{item.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

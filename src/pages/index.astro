@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PaperCard from '@/components/PaperCard.astro';
+import { getCollection } from 'astro:content';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+const lang: Lang = getLangFromUrl(Astro.url);
+
+const allPapers = await getCollection('papers');
+const latestPapers = allPapers
+  .sort((a, b) => b.data.date_added.localeCompare(a.data.date_added))
+  .slice(0, 4);
+
+const allGuides = await getCollection('guides');
+
+function lh(path: string): string {
+  if (lang === 'en') return `${path}${path.includes('?') ? '&' : '?'}lang=en`;
+  return path;
+}
+---
+
+<BaseLayout title={t(lang, 'siteTitle')} description={t(lang, 'siteDesc')} lang={lang}>
+
+  <!-- Hero -->
+  <section class="hero reveal">
+    <h1>{t(lang, 'heroTitle')}</h1>
+    <p class="hero-subtitle">{t(lang, 'heroSubtitle')}</p>
+
+    <div class="hero-search">
+      <span class="search-icon">&#x1F50D;</span>
+      <input
+        type="text"
+        id="hero-search-input"
+        placeholder={t(lang, 'heroSearch')}
+        autocomplete="off"
+      />
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn btn-primary" href={lh('/papers/')}>{t(lang, 'heroCta')}</a>
+      <a class="btn btn-secondary" href={lh('/guides/')}>{t(lang, 'heroGuideCta')}</a>
+    </div>
+  </section>
+
+  <!-- Latest Papers -->
+  <section class="section reveal">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">Papers</p>
+        <h2>{t(lang, 'latestPapers')}</h2>
+      </div>
+      <a href={lh('/papers/')}>{t(lang, 'viewAll')} &rarr;</a>
+    </div>
+
+    <div class="card-grid four">
+      {latestPapers.map((paper) => (
+        <PaperCard
+          slug={paper.id}
+          title={paper.data.title}
+          venue={paper.data.venue}
+          year={paper.data.year}
+          abstract={paper.data.abstract}
+          tags={paper.data.tags}
+          preview_image={paper.data.preview_image}
+          preview_video={paper.data.preview_video}
+          lang={lang}
+        />
+      ))}
+    </div>
+  </section>
+
+  <!-- Guides -->
+  <section class="section reveal">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">Guides</p>
+        <h2>{t(lang, 'guides')}</h2>
+      </div>
+      <a href={lh('/guides/')}>{t(lang, 'viewAll')} &rarr;</a>
+    </div>
+    <p style="color: var(--muted); margin-top: -12px; margin-bottom: 16px;">{t(lang, 'guidesSubtitle')}</p>
+
+    <div class="card-grid three">
+      {allGuides.map((guide) => (
+        <a class="guide-card" href={lh(`/guides/${guide.id}/`)}>
+          <span class="venue-badge">{guide.data.venue}</span>
+          <h3>{lang === 'en' ? guide.data.title_en : guide.data.title}</h3>
+          <p>{lang === 'en' ? guide.data.summary_en : guide.data.summary}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Why RoboIndex -->
+  <section class="section reveal">
+    <div class="section-head">
+      <div>
+        <p class="section-kicker">Why</p>
+        <h2>{t(lang, 'whyTitle')}</h2>
+      </div>
+    </div>
+
+    <div class="card-grid four">
+      {[
+        { icon: '\u{1F4DA}', titleKey: 'why1Title' as const, textKey: 'why1Text' as const },
+        { icon: '\u{1F4DD}', titleKey: 'why2Title' as const, textKey: 'why2Text' as const },
+        { icon: '\u{1F517}', titleKey: 'why3Title' as const, textKey: 'why3Text' as const },
+        { icon: '\u{1F91D}', titleKey: 'why4Title' as const, textKey: 'why4Text' as const },
+      ].map((feat) => (
+        <div class="feature-card">
+          <div class="feature-icon">{feat.icon}</div>
+          <h3>{t(lang, feat.titleKey)}</h3>
+          <p>{t(lang, feat.textKey)}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const input = document.getElementById('hero-search-input') as HTMLInputElement;
+    if (input) {
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && input.value.trim()) {
+          const params = new URLSearchParams(window.location.search);
+          const lang = params.get('lang');
+          const base = '/papers/';
+          const q = `?q=${encodeURIComponent(input.value.trim())}`;
+          const langParam = lang === 'en' ? '&lang=en' : '';
+          window.location.href = base + q + langParam;
+        }
+      });
+    }
+  </script>
+</BaseLayout>

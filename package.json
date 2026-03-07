@@ -1,0 +1,17 @@
+{
+  "name": "roboindex",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "RoboIndex - Robotics research open-source community",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.5.0"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.3.0"
+  }
+}

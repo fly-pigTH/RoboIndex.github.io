@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+const lang: Lang = getLangFromUrl(Astro.url);
+const guides = await getCollection('guides');
+
+function lh(path: string): string {
+  if (lang === 'en') return `${path}${path.includes('?') ? '&' : '?'}lang=en`;
+  return path;
+}
+---
+
+<BaseLayout title={t(lang, 'allGuides')} description={t(lang, 'allGuidesDesc')} lang={lang}>
+
+  <section class="hero reveal" style="padding: 36px 40px;">
+    <h1 style="font-size: clamp(1.5rem, 3vw, 2.2rem);">{t(lang, 'allGuides')}</h1>
+    <p class="hero-subtitle">{t(lang, 'allGuidesDesc')}</p>
+  </section>
+
+  <section class="section reveal">
+    <div class="card-grid three">
+      {guides.map((guide) => (
+        <a class="guide-card" href={lh(`/guides/${guide.id}/`)}>
+          <span class="venue-badge">{guide.data.venue}</span>
+          <h3>{lang === 'en' ? guide.data.title_en : guide.data.title}</h3>
+          <p>{lang === 'en' ? guide.data.summary_en : guide.data.summary}</p>
+          <p style="margin-top: 10px; font-size: 0.82rem; color: var(--muted);">
+            {t(lang, 'attribution')}: {guide.data.author} ({guide.data.updated})
+          </p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

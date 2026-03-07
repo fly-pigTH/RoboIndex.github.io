@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { t, getLangFromUrl, type Lang } from '@/i18n/index';
+
+const lang: Lang = getLangFromUrl(Astro.url);
+---
+
+<BaseLayout title={t(lang, 'contributeTitle')} description={t(lang, 'contributeSubtitle')} lang={lang}>
+
+  <section class="hero reveal" style="padding: 36px 40px;">
+    <h1 style="font-size: clamp(1.5rem, 3vw, 2.2rem);">{t(lang, 'contributeTitle')}</h1>
+    <p class="hero-subtitle">{t(lang, 'contributeSubtitle')}</p>
+  </section>
+
+  <section class="section reveal">
+    <div class="contribute-grid">
+      <div class="contribute-card">
+        <div class="contribute-icon">+</div>
+        <h3>{t(lang, 'addPaperTitle')}</h3>
+        <p>{t(lang, 'addPaperText')}</p>
+        <a class="btn btn-primary" href="https://github.com/RoboIndex/RoboIndex.github.io/issues/new?template=add-paper.yml" target="_blank" rel="noreferrer">
+          GitHub Issue &rarr;
+        </a>
+      </div>
+
+      <div class="contribute-card">
+        <div class="contribute-icon">&#x1F4DD;</div>
+        <h3>{t(lang, 'addGuideTitle')}</h3>
+        <p>{t(lang, 'addGuideText')}</p>
+        <a class="btn btn-primary" href="https://github.com/RoboIndex/RoboIndex.github.io/issues/new?template=add-experience.yml" target="_blank" rel="noreferrer">
+          GitHub Issue &rarr;
+        </a>
+      </div>
+
+      <div class="contribute-card">
+        <div class="contribute-icon">&#x1F527;</div>
+        <h3>{t(lang, 'improveTitle')}</h3>
+        <p>{t(lang, 'improveText')}</p>
+        <a class="btn btn-secondary" href="https://github.com/RoboIndex/RoboIndex.github.io" target="_blank" rel="noreferrer">
+          GitHub Repo &rarr;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section reveal">
+    <h2 style="margin-bottom: 16px;">
+      {lang === 'en' ? 'How to Add a Paper' : '如何添加论文'}
+    </h2>
+
+    <div class="card-grid three">
+      <div class="feature-card">
+        <div class="feature-icon">1</div>
+        <h3>{lang === 'en' ? 'Create a YAML file' : '创建 YAML 文件'}</h3>
+        <p>{lang === 'en'
+          ? 'Add a file in src/content/papers/ with title, venue, tags, and links.'
+          : '在 src/content/papers/ 添加一个文件，填写标题、会议、标签和链接。'}</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">2</div>
+        <h3>{lang === 'en' ? 'Submit a Pull Request' : '提交 Pull Request'}</h3>
+        <p>{lang === 'en'
+          ? 'Open a PR on GitHub. Automated checks will validate your file.'
+          : '在 GitHub 上提交 PR，自动化检查会验证你的文件格式。'}</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">3</div>
+        <h3>{lang === 'en' ? 'Get credited' : '获得署名'}</h3>
+        <p>{lang === 'en'
+          ? 'Your contribution is merged and you appear on the contributors list.'
+          : '你的贡献被合并后，你会出现在贡献者列表中。'}</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 24px; padding: 20px; border-radius: var(--radius-md); background: rgba(17,32,50,0.03); border: 1px solid var(--line);">
+      <h3 style="font-size: 0.95rem; margin-bottom: 8px;">{lang === 'en' ? 'Paper YAML template' : '论文 YAML 模板'}</h3>
+      <pre style="margin: 0; font-size: 0.82rem; overflow-x: auto; white-space: pre; color: var(--ink);"><code>title: "Your Paper Title"
+venue: "ICRA"
+year: 2025
+authors:
+  - "Author Name"
+abstract: "One-line summary of the paper."
+tags:
+  - manipulation
+  - reinforcement-learning
+repo: "https://github.com/user/repo"
+project_page: "https://your-project.github.io"
+arxiv: "https://arxiv.org/abs/xxxx.xxxxx"
+preview_image: "/paper-previews/your-paper.png"
+date_added: "2026-03-07"</code></pre>
+    </div>
+  </section>
+</BaseLayout>
