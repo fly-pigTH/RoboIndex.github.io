@@ -24,6 +24,9 @@ export default function Home() {
       {/* Real visitor location dot */}
       <VisitorLocationLayer />
 
+      {/* Frosted glass mask — between map and text, text stays sharp */}
+      <div className="hero-glass-mask" aria-hidden="true" />
+
       <div className="relative z-10 max-w-2xl w-full text-center space-y-10">
         <div className="space-y-4">
           <h1 className="hero-title text-5xl font-bold tracking-tight text-text-primary">

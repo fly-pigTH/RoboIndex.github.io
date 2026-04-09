@@ -112,6 +112,43 @@ body {
   text-shadow: 0 1px 12px var(--surface-0), 0 0 32px var(--surface-0);
 }
 
+/* Frosted glass mask — sits between map (z-0) and text (z-10) */
+.hero-glass-mask {
+  position: absolute;
+  z-index: 5;
+  width: 860px;
+  height: 540px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+
+  backdrop-filter: blur(60px) saturate(180%);
+  -webkit-backdrop-filter: blur(60px) saturate(180%);
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(250, 249, 245, 0.88) 0%,
+    rgba(250, 249, 245, 0.60) 45%,
+    rgba(250, 249, 245, 0.20) 70%,
+    transparent 100%
+  );
+
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 100%);
+}
+
+.dark .hero-glass-mask {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(17, 17, 17, 0.90) 0%,
+    rgba(17, 17, 17, 0.65) 45%,
+    rgba(17, 17, 17, 0.20) 70%,
+    transparent 100%
+  );
+}
+
 /* ── Apple-style liquid glass ── */
 .liquid-glass {
   background: linear-gradient(
