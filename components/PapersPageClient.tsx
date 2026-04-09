@@ -96,16 +96,21 @@ export default function PapersPageClient({
           )}
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {allTags.map(tag => (
-            <TagPill
-              key={tag}
-              tag={tag}
-              active={selectedTags.has(tag)}
-              onClick={() => toggleTag(tag)}
-            />
-          ))}
-        </div>
+        <details className="mt-4 group">
+          <summary className="text-xs text-text-muted cursor-pointer hover:text-text-secondary transition-colors select-none">
+            Filter by tags ({allTags.length} tags) <span className="group-open:hidden">▸</span><span className="hidden group-open:inline">▾</span>
+          </summary>
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {allTags.map(tag => (
+              <TagPill
+                key={tag}
+                tag={tag}
+                active={selectedTags.has(tag)}
+                onClick={() => toggleTag(tag)}
+              />
+            ))}
+          </div>
+        </details>
       </div>
 
       <div className="mt-6 text-sm text-text-muted">
