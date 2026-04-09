@@ -13,7 +13,7 @@ export default function PapersPage() {
   const allYears = [...new Set(papers.map(p => p.year))].sort((a, b) => b - a)
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-16">
+    <main className="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-16 overflow-hidden">
       <div className="mb-10">
         <h1 className="text-3xl font-bold tracking-tight text-text-primary">
           Papers

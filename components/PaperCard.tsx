@@ -7,7 +7,7 @@ export default function PaperCard({ paper }: { paper: Paper }) {
 
   return (
     <Link href={`/papers/${paper.slug}`} className="block group">
-      <article className="bg-surface-1 rounded-2xl border border-border-light p-4 sm:p-5 transition-all duration-200 hover:shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 overflow-hidden">
+      <article className="bg-surface-1 rounded-2xl border border-border-light p-4 sm:p-5 transition-all duration-200 hover:shadow-[0_2px_16px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 overflow-hidden break-words">
         {/* Title + year */}
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="text-sm sm:text-[15px] font-semibold text-text-primary group-hover:text-accent-600 transition-colors leading-snug line-clamp-2">
@@ -20,7 +20,7 @@ export default function PaperCard({ paper }: { paper: Paper }) {
 
         {/* Abstract */}
         {paper.abstract && (
-          <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed line-clamp-2 mb-3">
+          <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed line-clamp-2 mb-3 break-words">
             {paper.abstract}
           </p>
         )}

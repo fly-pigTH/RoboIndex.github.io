@@ -1,0 +1,15 @@
+title: "AugUndo: Scaling Up Augmentations for Monocular Depth Completion and
+  Estimation"
+venue: RA-L
+year: 2021
+authors: []
+abstract: "PyTorch Implementation of AugUndo: Scaling Up Augmentations for
+  Monocular Depth Completion and Estimation (ECCV 2024)"
+tags:
+  - 3d-reconstruction
+  - 3d-vision
+  - augmentation
+  - computer-vision
+  - depth-completion
+repo: https://github.com/alexklwong/augundo
+date_added: 2026-04-09

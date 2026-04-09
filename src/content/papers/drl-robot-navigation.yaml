@@ -1,0 +1,14 @@
+title: DRL-robot-navigation
+venue: RA-L
+year: 2022
+authors: []
+abstract: Deep Reinforcement Learning for mobile robot navigation in ROS Gazebo
+  simulator.
+tags:
+  - deep-reinforcement-learning
+  - gazebo
+  - obstacle-avoidance
+  - obstacle-avoidance-robot
+  - reinforcement-learning
+repo: https://github.com/reiniscimurs/DRL-robot-navigation
+date_added: 2026-04-09

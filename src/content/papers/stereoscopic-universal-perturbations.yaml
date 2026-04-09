@@ -1,0 +1,16 @@
+title: Stereoscopic Universal Perturbations across Different Architectures and
+  Datasets
+venue: RA-L
+year: 2021
+authors: []
+abstract: PyTorch Implementation of Stereoscopic Universal Perturbations across
+  Different Architectures and Datasets (CVPR 2022)
+tags:
+  - 3d-reconstruction
+  - 3d-vision
+  - adversarial-attacks
+  - computer-vision
+  - cvpr
+repo: https://github.com/alexklwong/stereoscopic-universal-perturbations
+arxiv: https://arxiv.org/abs/2112.06116
+date_added: 2026-04-09

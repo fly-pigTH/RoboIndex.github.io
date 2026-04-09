@@ -1,0 +1,9 @@
+title: M2DGR-Benchmark
+venue: RA-L
+year: 2022
+authors: []
+abstract: A benchmark based on M2DGR and M2DGR-plus dataset with adapted SOTA
+  SLAM algorithms
+tags: []
+repo: https://github.com/sjtuyinjie/M2DGR-Benchmark
+date_added: 2026-04-09

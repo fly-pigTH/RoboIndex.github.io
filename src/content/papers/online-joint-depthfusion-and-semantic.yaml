@@ -1,0 +1,13 @@
+title: A Real-Time Online Learning Framework for Joint 3D Reconstruction and
+  Semantic Segmentation for Indoor Scene.
+venue: RA-L
+year: 2022
+authors: []
+abstract: A Real-Time Online Learning Framework for Joint 3D Reconstruction and
+  Semantic Segmentation for Indoor Scene.
+tags:
+  - reconstruction
+  - segmentation
+repo: https://github.com/suryanshkumar/online-joint-depthfusion-and-semantic
+arxiv: https://arxiv.org/abs/2108.05246
+date_added: 2026-04-09

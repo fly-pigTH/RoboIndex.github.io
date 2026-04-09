@@ -1,0 +1,15 @@
+title: "Stereopagnosia: Fooling Stereo Networks with Adversarial Perturbations"
+venue: RA-L
+year: 2020
+authors: []
+abstract: "PyTorch implementation of Stereopagnosia: Fooling Stereo Networks
+  with Adversarial Perturbations (in AAAI 2021)"
+tags:
+  - 3d-reconstruction
+  - 3d-vision
+  - aaai
+  - aaai2021
+  - adversarial-attacks
+repo: https://github.com/alexklwong/stereopagnosia
+arxiv: https://arxiv.org/abs/2009.10142
+date_added: 2026-04-09

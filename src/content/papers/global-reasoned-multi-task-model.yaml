@@ -1,0 +1,14 @@
+title: Global-reasoned-multi-task-model
+venue: RA-L
+year: 2022
+authors: []
+abstract: Globally reasoned multi-task model for surgical scene understanding.
+tags:
+  - global-reasoning
+  - graph
+  - icra
+  - icra2022
+  - interaction
+repo: https://github.com/lalithjets/Global-reasoned-multi-task-model
+arxiv: https://arxiv.org/abs/2201.11957
+date_added: 2026-04-09

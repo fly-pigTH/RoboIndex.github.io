@@ -1,0 +1,10 @@
+title: Differentiable Planning Library
+venue: RA-L
+year: 2024
+authors: []
+abstract: The official codebase for Symmetric Planning (ICLR'23) and Implicit
+  Differentiable Planning (ICLR'23)
+tags: []
+repo: https://github.com/linfeng-z/DiffPlan
+arxiv: https://arxiv.org/abs/2309.13043
+date_added: 2026-04-09

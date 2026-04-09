@@ -1,0 +1,16 @@
+title: Generative AI for Autonomous Driving
+venue: RA-L
+year: 2025
+authors: []
+abstract: a comprehensive and critical synthesis of the emerging role of GenAI
+  across the full autonomous driving stack
+tags:
+  - 3dvision
+  - agentic-ai
+  - autonomous-driving
+  - autonomous-vehicles
+  - diffusion-models
+repo: https://github.com/taco-group/GenAI4AD
+arxiv: https://arxiv.org/abs/2505.08854
+project_page: https://arxiv.org/abs/2505.08854
+date_added: 2026-04-09

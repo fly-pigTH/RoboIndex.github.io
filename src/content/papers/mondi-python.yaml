@@ -1,0 +1,14 @@
+title: Monitored Distillation for Positive Congruent Depth Completion (MonDi)
+venue: RA-L
+year: 2021
+authors: []
+abstract: PyTorch Implementation of Monitored Distillation for Positive
+  Congruent Depth Completion (ECCV 2022)
+tags:
+  - 3d-vision
+  - blind-ensemble
+  - computer-vision
+  - depth-completion
+  - depth-estimation
+repo: https://github.com/alexklwong/mondi-python
+date_added: 2026-04-09

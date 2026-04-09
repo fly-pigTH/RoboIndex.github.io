@@ -1,0 +1,14 @@
+title: Self-Supervised Label Generator
+venue: RA-L
+year: 2007
+authors: []
+abstract: Self-Supervised Label Generator in MATLAB, IEEE RA-L
+tags:
+  - anomaly-detection
+  - matlab
+  - mobile-robots
+  - ral
+  - road-detection
+repo: https://github.com/hlwang1124/SSLG
+arxiv: https://arxiv.org/abs/2007.05950
+date_added: 2026-04-09

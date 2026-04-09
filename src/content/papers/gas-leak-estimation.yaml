@@ -1,0 +1,16 @@
+title: Probabilistic Gas Leak Rate Estimation using Submodular Function
+  Maximization with Routing Constraints
+venue: RA-L
+year: 2022
+authors: []
+abstract: "Probabilistic Gas Leak Rate Estimation using Submodular Function
+  Maximization with Routing Constraints "
+tags:
+  - bayesian-optimization
+  - methane
+  - path-planning
+  - routing-algorithm
+  - submodular-optimization
+repo: https://github.com/UNCCharlotte-CS-Robotics/Gas-Leak-Estimation
+project_page: https://kdkalvik.github.io/publications/gas-leak-estimation
+date_added: 2026-04-09

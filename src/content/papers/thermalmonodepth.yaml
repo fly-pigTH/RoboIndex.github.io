@@ -1,0 +1,16 @@
+title: Maximizing Self-supervision from Thermal Image for Effective
+  Self-supervised Learning of Depth and Ego-motion
+venue: RA-L
+year: 2021
+authors: []
+abstract: Official implementation of the paper "Maximizing Self-supervision from
+  Thermal Image for Effective Self-supervised Learning of Depth and Ego-motion"
+tags:
+  - depth-estimation
+  - infrared-sensors
+  - monocular-depth
+  - pose-estimation
+  - self-supervised-learning
+repo: https://github.com/UkcheolShin/ThermalMonoDepth
+arxiv: https://arxiv.org/abs/2201.04387
+date_added: 2026-04-09

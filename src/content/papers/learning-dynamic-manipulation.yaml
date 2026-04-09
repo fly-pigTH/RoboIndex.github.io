@@ -1,0 +1,15 @@
+title: learning-dynamic-manipulation
+venue: RA-L
+year: 2022
+authors: []
+abstract: Learning dynamic mobile manipulation with deep reinforcement learning
+tags:
+  - anki-vector
+  - deep-reinforcement-learning
+  - dqn
+  - dynamic-manipulation
+  - mobile-manipulation
+repo: https://github.com/jimmyyhwu/learning-dynamic-manipulation
+arxiv: https://arxiv.org/abs/2204.02390
+project_page: https://learning-dynamic-manipulation.cs.princeton.edu
+date_added: 2026-04-09

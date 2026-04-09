@@ -1,0 +1,14 @@
+title: Unsupervised Depth Completion with Calibrated Backprojection Layers
+venue: RA-L
+year: 2021
+authors: []
+abstract: PyTorch Implementation of Unsupervised Depth Completion with
+  Calibrated Backprojection Layers (ORAL, ICCV 2021)
+tags:
+  - 3d-reconstruction
+  - 3d-vision
+  - backprojection
+  - calibration
+  - computer-vision
+repo: https://github.com/alexklwong/calibrated-backprojection-network
+date_added: 2026-04-09

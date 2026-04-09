@@ -1,0 +1,12 @@
+title: Detection and Refinement of Orthogonal Plane Pairs and Derived
+  Orthogonality Primitives
+venue: RA-L
+year: 2020
+authors: []
+abstract: 'Code accompanying the paper "From Planes to Corners: Multi-Purpose
+  Primitive Detection in Unorganized 3D Point Clouds" by C.'
+tags: []
+repo: https://github.com/c-sommer/orthogonal-planes
+arxiv: https://arxiv.org/abs/2001.07360
+project_page: https://doi.org/10.1109/LRA.2020.2969936
+date_added: 2026-04-09

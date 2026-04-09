@@ -134,7 +134,7 @@ export default function PapersPageClient({
           </button>
         </div>
       ) : (
-        <div className="mt-4 grid gap-4">
+        <div className="mt-4 grid gap-4 min-w-0">
           {filtered.map(paper => (
             <PaperCard key={paper.slug} paper={paper} />
           ))}

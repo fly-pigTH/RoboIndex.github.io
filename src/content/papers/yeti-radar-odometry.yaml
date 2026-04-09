@@ -1,0 +1,12 @@
+title: yeti
+venue: RA-L
+year: 2021
+authors: []
+abstract: Radar odometry code which removes motion distortion and Doppler
+  effects from Navtech radar data.
+tags:
+  - autonomous-vehicles
+  - radar
+repo: https://github.com/keenan-burnett/yeti_radar_odometry
+arxiv: https://arxiv.org/abs/2011.03512
+date_added: 2026-04-09

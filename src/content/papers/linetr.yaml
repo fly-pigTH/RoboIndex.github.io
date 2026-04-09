@@ -1,0 +1,14 @@
+title: Line as a Visual Sentence with LineTR
+venue: RA-L
+year: 2021
+authors: []
+abstract: Along with feature points for image matching, line features provide
+  additional constraints to solve visual geometric problems in robotics and
+  computer vision (CV).
+tags:
+  - line-descriptor
+  - visual-localization
+  - visual-slam
+repo: https://github.com/yosungho/LineTR
+arxiv: https://arxiv.org/abs/2109.04753
+date_added: 2026-04-09

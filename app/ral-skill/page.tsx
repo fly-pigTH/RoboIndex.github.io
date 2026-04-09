@@ -145,13 +145,13 @@ export default function RalSkillPage() {
             <div key={i} className="bg-surface-1 rounded-2xl border border-border-light overflow-hidden">
               <div className="bg-surface-2/50 px-5 py-3 border-b border-border-light">
                 <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded bg-blue-500 text-white text-[10px] font-bold flex items-center justify-center">U</span>
+                  <span className="w-5 h-5 rounded bg-text-muted text-surface-0 text-[10px] font-bold flex items-center justify-center">U</span>
                   <span className="text-sm text-text-primary">{d.question}</span>
                 </div>
               </div>
               <div className="px-5 py-4">
                 <div className="flex items-start gap-2">
-                  <span className="w-5 h-5 rounded bg-emerald-500 text-white text-[10px] font-bold flex items-center justify-center shrink-0">R</span>
+                  <span className="w-5 h-5 rounded bg-accent-500 text-white text-[10px] font-bold flex items-center justify-center shrink-0">R</span>
                   <div>
                     <p className="text-sm text-text-primary leading-relaxed">{d.answer}</p>
                     <div className="mt-2 flex items-center gap-2 flex-wrap">
@@ -170,11 +170,11 @@ export default function RalSkillPage() {
       {/* Install */}
       <div className="mb-16">
         <h2 className="text-lg font-semibold text-text-primary mb-4">安装</h2>
-        <div className="bg-gray-900 rounded-xl p-5 text-sm font-mono">
-          <div className="text-gray-400 mb-1"># 全局安装</div>
-          <div className="text-emerald-400">git clone https://github.com/fly-pigTH/ral-skill ~/.claude/skills/ral-skill</div>
-          <div className="text-gray-400 mt-4 mb-1"># 使用</div>
-          <div className="text-emerald-400">/ral-skill</div>
+        <div className="bg-surface-2 border border-border-light rounded-xl p-5 text-sm font-mono overflow-x-auto">
+          <div className="text-text-muted mb-1"># 全局安装</div>
+          <div className="text-accent-600 break-all">git clone https://github.com/fly-pigTH/ral-skill ~/.claude/skills/ral-skill</div>
+          <div className="text-text-muted mt-4 mb-1"># 使用</div>
+          <div className="text-accent-600">/ral-skill</div>
         </div>
       </div>
 

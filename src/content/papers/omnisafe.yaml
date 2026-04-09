@@ -1,0 +1,16 @@
+title: Clone the repo
+venue: RA-L
+year: 2021
+authors: []
+abstract: "JMLR: OmniSafe is an infrastructural framework for accelerating
+  SafeRL research."
+tags:
+  - benchmark
+  - constraint-rl
+  - constraint-satisfaction-problem
+  - deep-reinforcement-learning
+  - reinforcement-learning
+repo: https://github.com/PKU-Alignment/omnisafe
+arxiv: https://arxiv.org/abs/2209.07089
+project_page: https://omnisafe.readthedocs.io/en/latest/
+date_added: 2026-04-09

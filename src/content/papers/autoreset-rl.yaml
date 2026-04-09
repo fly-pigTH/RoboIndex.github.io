@@ -1,0 +1,12 @@
+title: Automating Reinforcement Learning with Example-based Resets
+venue: RA-L
+year: 2022
+authors: []
+abstract: Official TensorFlow implementation of the paper "Automating
+  Reinforcement Learning with Example-based Resets"
+tags:
+  - ra-l
+  - reinforcement-learning
+repo: https://github.com/jigangkim/autoreset_rl
+arxiv: https://arxiv.org/abs/2204.02041
+date_added: 2026-04-09

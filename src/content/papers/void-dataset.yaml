@@ -1,0 +1,13 @@
+title: VOID Dataset
+venue: RA-L
+year: 2020
+authors: []
+abstract: Visual Odometry with Inertial and Depth (VOID) dataset
+tags:
+  - 3d-reconstruction
+  - 3d-vision
+  - computer-vision
+  - dataset
+  - depth-completion
+repo: https://github.com/alexklwong/void-dataset
+date_added: 2026-04-09
