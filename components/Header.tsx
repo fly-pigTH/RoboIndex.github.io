@@ -9,10 +9,28 @@ export default function Header() {
         </Link>
         <nav className="flex items-center gap-8">
           <Link
+            href="/showcase"
+            className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+          >
+            Showcase
+          </Link>
+          <Link
             href="/papers"
             className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
           >
             Papers
+          </Link>
+          <Link
+            href="/guides"
+            className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+          >
+            Guides
+          </Link>
+          <Link
+            href="/dashboard"
+            className="text-sm text-text-secondary hover:text-text-primary transition-colors duration-200"
+          >
+            Dashboard
           </Link>
           <a
             href="/api/papers.json"
