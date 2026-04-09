@@ -4,212 +4,213 @@ author_url: "https://github.com/CeHao1"
 updated: "2026-02-18"
 description: "帮助需要投稿 RA-L 的作者更顺利地完成投稿和发表流程。内容由个人经验总结，不代表官方观点。"
 
-chapters:
-  - id: overview
-    title: "综述"
-    number: "0"
-    content: |
-      本攻略旨在帮助需要投稿RA-L的作者，更顺利的完成投稿和发表流程。本文内容是由个人经验总结，不代表官方观点。
-      主要内容包括：期刊定位和影响力、重要网站、投稿周期、投稿流程、初稿提交、修改rebuttal、Final version 提交和编辑沟通、费用缴纳、正式发表、会议transfer。
+phases:
+  - id: phase-1
+    title: "投稿前准备"
+    subtitle: "了解期刊、准备论文、完成提交"
+    chapters:
+      - id: positioning
+        title: "期刊定位与选刊"
+        blocks:
+          - type: text
+            content: "IEEE Robotics and Automation Letters (RA-L) 根据官网描述："
+          - type: quote
+            content: "The scope of this journal is to publish peer-reviewed articles that provide a timely and concise account of innovative research ideas and application results, reporting significant theoretical findings and application case studies in areas of robotics and automation."
+          - type: text
+            content: "简单来说："
+          - type: list
+            items:
+              - "**短期刊** (Letter)，不是 full-length journal"
+              - "Topic 覆盖**机器人和自动化**"
+              - "支持**理论、算法系统和应用类**贡献"
+              - "正文 + reference 共 **8 页**双栏，7 页正文 + 1 页 reference，没有 appendix"
+              - "**全年可投**，发表周期约 5 个月"
+          - type: heading
+            content: "期刊 Taste — 什么样的论文适合投 RAL？"
+          - type: text
+            content: "RAS 系列更关注**真正的机器人问题**。建议故事从机器人问题出发，而不是从 AI 方法出发："
+          - type: compare
+            good: "某机器人任务很难，现有 SOTA 方法成功率很低 → 从**机器人任务**出发"
+            bad: "某 AI 方法效果不错，但在机器人任务上不够好 → 从 **AI 方法**出发"
+            note: "两种写法可能说的是同一件事，但 A 的机器人视角更符合 RAL 的 taste。"
+          - type: text
+            content: "RAL 适合**故事清晰、贡献精准**的论文。系统不够大的投 RAL，完整的大系统可以投 RSS。"
+          - type: heading
+            content: "影响力参考"
+          - type: text
+            content: "笔者个人估算的机器人方向影响力排序："
+          - type: list
+            items:
+              - "**RSS = 1.2× RAL/CoRL = 1.7× ICRA = 2.5× IROS**"
+              - "RAL 处于 ICRA/IROS（会议）和 TRO（长期刊）之间的缓冲"
+          - type: heading
+            content: "RAL vs ICRA 怎么选？"
+          - type: list
+            items:
+              - "论文**完整度高** → 投 RAL。有 rebuttal 机会，质量越高反而越容易中"
+              - '论文**不太完整** → 投 ICRA。没有 rebuttal，有一定概率性，完整论文反而可能"运气不好"没中'
 
-  - id: positioning
-    title: "期刊定位和影响力"
-    number: "1"
-    paragraphs:
-      - source: official
-        text: |
-          IEEE Robotics and Automation Letters (RA-L) 根据官网的描述：
-          The scope of this journal is to publish peer-reviewed articles that provide a timely and concise account of innovative research ideas and application results, reporting significant theoretical findings and application case studies in areas of robotics and automation.
-          1) 是一个短期刊, 2) topic 是机器人和自动化, 3) 支持理论、算法系统、和应用类贡献。
-      - source: guide
-        text: |
-          页数限制: 正文+reference 一共双栏8页。没有appendix。允许提交视频和代码材料。RA-L的篇幅要多于ICRA/IROS, 一般是7页正文，1页reference。但远远少于 full-length journal (10-12页)。
-      - source: guide
-        text: |
-          期刊taste: RAS 的期刊会议都是关注于机器人问题的。更喜欢能够应用于真正机器人系统的方法，或者创新的机器人系统，解决机器人的实际问题。创新点可以是控制算法/learning算法，更好的framework，或者机器人结构设计等等。
-          建议故事先从一个真实的机器人问题出发写，而不是从AI problem开始写。举个例子:
-          (A) 某某机器人任务很难，现有的sota VLA做这个任务成功率很低。
-          (B) VLA效果不错，但是在某某机器人任务上成功率很低。
-          A和B或许说的是同一件事情，但侧重点不同。A是从机器人任务出发的，更多分析机器人问题。B是从VLA出发的，会review很多VLA工作。我个人建议用A的机器人故事。
-      - source: guide
-        text: |
-          生态位和影响力：RAL 在2019年开始，主要是作为 ICRA/IROS 和 TRO 之间的一个缓冲。因为会议每年集中审稿，造成审稿压力太大了。通过RAL期刊 + 会议transfer 的方法，把审稿过程平均到全年中。TRO的篇幅比较长，审稿周期太长，无法适应如今快节奏的robot learning 研究。因此RAL平均发表大约5个月的周期，更适合快节奏的机器人研究。
-      - source: guide
-        text: |
-          笔者个人认为影响力:
-          AI三大会 = RSS
-          AI track: AI三大会 = 1.2 CVPR/ICCV
-          Robot track: RSS = 1.2 RAL/CoRL = 1.7 ICRA = 2.5 IROS
-          笔者是大致估算的，也是根据中稿的贡献量来判断。
-      - source: guide
-        text: "RAL适合故事清晰，贡献充分的论文。但是系统不够大。如果是一个完整的系统可以投RSS。RAL更适合小巧，但是精准的贡献。并且RAL可以全年投稿，因此更加从容。"
-      - source: guide
-        heading: "如何选择 RAL or ICRA？"
-        text: '如果论文很完整，那就投RAL。因为RAL的审稿周期长，reviewer能看的更充分。而且有rebuttal环节，澄清一些误会。因此文章质量越高，反而容易中。对于论文不太完整的work，可以投ICRA。因为没有rebuttal，存在一定的概率性。这样对于很完整的论文，反而存在"运气不好"没中的情况。'
+      - id: formatting
+        title: "写作与格式要求"
+        blocks:
+          - type: heading
+            content: "初稿基本要求"
+          - type: list
+            items:
+              - "使用 **ieee conf 模板**（不是 trans 模板，那是 final version 用的）"
+              - "**匿名提交**（双盲），论文里不要写作者信息"
+              - "正文 + reference 最多 **8 页**，超过 6 页每页加 $175"
+              - "**没有 appendix**，上传额外文字材料可能被 desk reject"
+              - "可以提交**多媒体材料**（视频、代码），但不要加 appendix"
+          - type: callout
+            variant: warning
+            content: "**不要在论文里加网页或视频链接！** 运气好编辑让你删，运气不好直接 desk reject。"
+          - type: heading
+            content: "格式细节"
+          - type: list
+            items:
+              - "不要超出边框或超页，否则无法提交"
+              - "空间不够时：用 `\\vspace` 减间距，公式可以用 `\\small` 或 `\\tiny`"
+              - "**绝对不要调整页面 margin**"
+              - "PDF 和视频都有尺寸限制。PDF 用 Acrobat 压缩，建议用 PDF 格式图片（更清晰更小）"
 
-  - id: links
-    title: "重要网站"
-    number: "2"
-    links:
-      - label: "RA-L 官网"
-        url: "https://www.ieee-ras.org/publications/ra-l/"
-      - label: "RAS 投稿系统"
-        url: "https://ras.papercept.net/conferences/scripts/login.pl"
-      - label: "初稿 ieee conf 模板"
-        url: "http://ras.papercept.net/conferences/support/files/ieeeconf.zip"
-      - label: "Final version ieee trans 模板"
-        url: "https://template-selector.ieee.org/secure/templateSelector/downloadTemplate?publicationTypeId=1&titleId=33&articleId=3&fileId=43"
-      - label: "RAS 会员注册 (参会有优惠)"
-        url: "https://www.ieee.org/membership-catalog/productdetail/showProductDetailPage.html?product=PER481-ELE"
+      - id: links
+        title: "重要网站"
+        blocks:
+          - type: links
+            items:
+              - label: "RA-L 官网"
+                url: "https://www.ieee-ras.org/publications/ra-l/"
+              - label: "RAS 投稿系统 (PaperCept)"
+                url: "https://ras.papercept.net/conferences/scripts/login.pl"
+              - label: "初稿模板 (ieee conf)"
+                url: "http://ras.papercept.net/conferences/support/files/ieeeconf.zip"
+              - label: "Final version 模板 (ieee trans)"
+                url: "https://template-selector.ieee.org/secure/templateSelector/downloadTemplate?publicationTypeId=1&titleId=33&articleId=3&fileId=43"
+              - label: "RAS 会员注册 (参会优惠)"
+                url: "https://www.ieee.org/membership-catalog/productdetail/showProductDetailPage.html?product=PER481-ELE"
 
-  - id: timeline
-    title: "投稿周期"
-    number: "3"
-    paragraphs:
-      - source: guide
-        text: |
-          提交manuscript后，审稿大约2.5~3个月。(desk reject可能会很快，但我没遇到过)
-          如果返回意见是 rebuttal(revise and resubmit), 有30天时间修改并重新提交。
-          一般AE会用 1-2周时间，返回 accept 的消息。注意，只要accept了，就可以在RAS系统里立马transfer会议！！！不需要缴费or正式见刊。可以提前算好日期，如果打算进行transfer。
-      - source: guide
-        text: "当然也可能遇到AE连续多轮rebuttal，每次都有1个月修改时间。"
+      - id: submission
+        title: "初稿提交 Checklist"
+        blocks:
+          - type: text
+            content: "所有操作在 **RAS PaperCept 系统**完成（不是 IEEE 系统）。"
+          - type: callout
+            variant: warning
+            content: |
+              **关于通讯作者：**
+              · 提交论文的账号 = 系统标记的通讯作者（带 * 号）
+              · 系统里的通讯**不是**最终论文通讯，以 camera-ready 为准
+              · **不要用老板账号提交！** 否则后续操作都得用他的账号
+          - type: heading
+            content: "提交 Tips"
+          - type: list
+            items:
+              - "**Editor-in-Chief 不要瞎选**，查查他们的谷歌学术，了解领域"
+              - "**Keywords** 不好选可以用 GPT 辅助，然后自己 check"
+              - "**要写 cover letter**，涉及到 AE 分配审稿人"
+              - "会议转 RAL **不建议**，篇幅不长，2~3 篇会议转一个 full-length journal 更好"
 
-  - id: workflow
-    title: "投稿流程"
-    number: "4"
-    paragraphs:
-      - source: official
-        text: |
-          官方流程：https://www.ieee-ras.org/publications/ra-l/submission-procedures/
-          分为 提交初稿 → rebuttal(resubmission) → final version 三个阶段。
-          这一点和大部分期刊是相同的。
-      - source: guide
-        text: "注意所有提交的操作都要在RAS系统里完成，不是ieee的系统。"
-      - source: guide
-        important: true
-        text: |
-          RAS 系统里，无论是RAL还是ICRA，IROS。提交论文的人账号，就是通讯作者。在名字列表里会加 * 标记。
-          系统里可以选择非本账号作为通讯，但是没必要。
-          RAS系统里的通讯作者，不是最后论文的通讯作者。真正的通讯作者，以camera-ready 论文里写的为准。
-          不要让老板(杰青，院士)作为系统里的通讯，这样就必须用他的账号帮你提交论文！！！他忙的要死的时候，你让他提交论文，他会砍死你的。
-      - source: guide
-        text: "在完成了论文流程后，最后会和编辑修订最终版本。然后签署copy right的承诺书。缴费。之后能看到一个 early access 版本，然后大约1个月，论文会发表在下一个issue。"
+  - id: phase-2
+    title: "审稿与修改"
+    subtitle: "等待结果、应对审稿意见、完成修改"
+    chapters:
+      - id: timeline
+        title: "投稿周期"
+        blocks:
+          - type: steps
+            items:
+              - "提交后，审稿大约 **2.5~3 个月**（desk reject 可能更快）"
+              - "收到 Revise and Resubmit 后，有 **30 天**修改时间"
+              - "提交 revision 后，AE 一般 **1~2 周**内回复"
+          - type: text
+            content: "也可能遇到 AE 连续多轮 rebuttal，每次 1 个月修改时间。"
 
-  - id: initial-submission
-    title: "初稿提交"
-    number: "5"
-    items:
-      - source: guide
-        text: "使用 ieee conf模板。"
-      - source: guide
-        text: "匿名提交。论文里不要写作者是谁。"
-      - source: guide
-        text: "加reference最多8页。多于两页的要多付款。"
-      - source: guide
-        text: "没有appendix。"
-      - source: guide
-        text: "可以提交multi-media 材料。包括视频和code等等。但是不要加appendix。可能被desk rej。"
-      - source: guide
-        text: "不要在论文里加网页link，或者视频link。运气好编辑让你删了。运气不好直接 desk rej。"
-    tips:
-      - source: guide
-        text: "Editor-in-Chief 不要瞎选，可以查查他们的谷歌学术。了解一下他们的领域。"
-      - source: guide
-        text: "Keywords很多，如果不好选可以把所有的内容复制到gpt里。然后把自己的题目摘要给他，GPT能帮你选最符合的。然后记得自己check一下。"
-      - source: guide
-        text: "要写cover letter。别瞎写。涉及到AE给你分配审稿人。"
-      - source: guide
-        text: "虽然允许会议转RAL，但不建议也没必要。本来篇幅就不太长。可以2-3篇会议转一个full-length journal更好。"
-      - source: guide
-        text: "论文有明确的格式要求，不要一行太宽超出边框，或者超页。无法提交的。实在没空间，就用 vspace 降低图片表格和文字之间的gap。但是一定不要调整边框margin。公式字号也可以适当调小，比如small, tiny."
-      - source: guide
-        text: "论文和视频都有严格的尺寸限制。PDF压缩工具很多，比如acrobat。一般是把位图的像素降低。笔者建议用pdf图片，更清晰，并且尺寸更小。视频就更低的帧率，清晰度等等。"
+      - id: rebuttal
+        title: "Rebuttal 策略"
+        blocks:
+          - type: text
+            content: "审稿约 3 个月后收到邮件。如果是 **Revise and Resubmit** — 恭喜，AE 认可你的工作。接下来有 30 天修改，临近截止 5 天前有邮件提醒。"
+          - type: heading
+            content: "需要提交的材料"
+          - type: list
+            ordered: true
+            items:
+              - "**Response to Reviewers** (Statement of Changes) — 逐条回复"
+              - "**标记修改的 manuscript** — 高亮所有改动"
+              - "**干净的 manuscript** — 最终版本"
+              - "**Cover letter** — 仍然需要"
+          - type: heading
+            content: "回复技巧"
+          - type: list
+            items:
+              - "对每个 reviewer 的每个 comment 都 **one-by-one 回复**"
+              - "官网说可以**更新 title 和 author list**"
 
-  - id: rebuttal
-    title: "修改 Rebuttal"
-    number: "6"
-    paragraphs:
-      - source: guide
-        text: |
-          审稿3个月后，你会收到邮件。
-          如果是: Revise and Resubmit。恭喜你，AE是认可你的。
-          接下来你有一个月时间进行rebuttal，一般是30天。临近提交的5天后会给你发邮件提醒。
-    tips:
-      - source: guide
-        text: "官网说可以更新 title 和 author list. 我没改过，可以测试一下是否能添加新的作者。"
-      - source: guide
-        text: "修改需要一个 response to reviewers (statement of changes), 一个标记change的manuscript，和一个干净的manuscript。在系统里上传到对应的地方。"
-      - source: guide
-        text: "仍然需要cover letter。"
-      - source: guide
-        text: "建议对每个 reviewer的每个comment，都 one-by-one的回复。Rebuttal技巧在此不赘述了。"
+  - id: phase-3
+    title: "录用后"
+    subtitle: "Camera-ready、缴费、发表、会议 Transfer"
+    chapters:
+      - id: final-version
+        title: "Final Version 提交"
+        blocks:
+          - type: callout
+            variant: warning
+            content: "Accept 后必须在 **14 天内**完成 camera-ready 版本。这是 hard deadline，超时论文将不会被发表！"
+          - type: heading
+            content: "参考链接"
+          - type: links
+            items:
+              - label: "投稿流程 — Submission of Final materials"
+                url: "https://www.ieee-ras.org/publications/ra-l/submission-procedures/"
+              - label: "Final checklist — 修改指南"
+                url: "https://www.ieee-ras.org/publications/ra-l/final-submission-checklist/"
+              - label: "换模板说明 — Manuscript preparation"
+                url: "https://www.ieee-ras.org/publications/ra-l/ra-l-information-for-authors/"
+          - type: heading
+            content: "Camera-ready Checklist"
+          - type: list
+            ordered: true
+            items:
+              - "**换成 ieee trans 模板**。建议复制一份新的 LaTeX 工程，不要在原文件上改"
+              - "从 Overleaf 下载所有文件，除了 cls 之外都上传到新模板工程"
+              - "**添加作者信息**和左下角作者简介，致谢 (Acknowledgement) 放在 reference 之前"
+              - "Trans 空间比 conf 大，一般放得下。超页就调 vspace 或缩图，编辑后续会帮调整"
+              - "日期信息大致写即可，编辑会帮你校对"
+          - type: text
+            content: "之后签署 copyright file（需 DOI），上传 PDF 和工程文件。"
+          - type: callout
+            variant: warning
+            content: |
+              **编辑沟通注意：**
+              · 编辑会校对并让你确认题目、摘要、作者信息
+              · 排版后你需要**确认内容无误**
+              · **把引用中的 arxiv 换成正式出版信息！** 从 dblp.org 搜索，搜不到可以告知编辑
 
-  - id: final-version
-    title: "Final version 提交和编辑沟通"
-    number: "7"
-    paragraphs:
-      - source: guide
-        text: "在提交 revision后，两周内AE会有回复。继续修改or accept。此时注意，你必须在14天内完成camera ready版本。这一步非常麻烦。而且很奇怪。"
-    reference_links:
-      - label: "投稿流程"
-        url: "https://www.ieee-ras.org/publications/ra-l/submission-procedures/"
-        note: "Submission of Final materials"
-      - label: "Final checklist"
-        url: "https://www.ieee-ras.org/publications/ra-l/final-submission-checklist/"
-        note: "如何进行修改"
-      - label: "换模板说明"
-        url: "https://www.ieee-ras.org/publications/ra-l/ra-l-information-for-authors/"
-        note: "Manuscript preparation, Final Submission"
-    checklist:
-      - source: guide
-        text: "要修改模板为 ieee trans了。笔者建议，复制一份latex 工程。不要再原latex里修改。"
-      - source: guide
-        text: "简单的做法就是从overleaf 下载所有文件。然后把除了 cls 文件之外的都上传上去。然后对应的把 root.tex (主编译文件) 对应的修改好。"
-      - source: guide
-        text: "记得添加作者信息，和左下角的一大堆作者信息。以及致谢(acknowledgement) 在 reference 之前。"
-      - source: guide
-        text: "由于模板变了，一般来说 trans的空间比conf更大。不会出现放不下的情况。但是可能作者太多了，导致单位和致谢太多了，超过了8页。这个时候就先调整好一些vspace，甚至图片缩小点都没关系。之后编辑会帮你调整的。"
-      - source: guide
-        text: "不用担心thanks里的编辑提交日期出错。你大致写一个即可。可以查查邮件。之后编辑会帮你校对。"
-    paragraphs_after:
-      - source: guide
-        text: "之后要签署 copyright file, 需要DOI。然后上传pdf 文件，和工程文件(overleaf 下载即可)。也可以修改video等等。"
-      - source: guide
-        important: true
-        text: |
-          编辑会校对然后让你确认，题目摘要作者是对的。
-          给你重新排版后，你确认内容是对的。
-          要把已经发表的论文的citation，.bib 里的换成正确的，而不是 arxiv. 如果谷歌学术实在搜不到，可以从 https://dblp.org/ 这里搜索。然后如果实在实在搜不到，可以和编辑说搜不到。编辑也可能犯错。
+      - id: fees
+        title: "费用缴纳"
+        blocks:
+          - type: list
+            items:
+              - "RAL 会给一个缴费系统"
+              - "**Open access** 可选，笔者认为不必，挂 arxiv 就行"
+              - "超过 6 页每页 **$175**，用 Visa 或 MasterCard 支付"
 
-  - id: fees
-    title: "费用缴纳"
-    number: "8"
-    paragraphs:
-      - source: guide
-        text: |
-          RAL会给你一个系统，用来缴费。
-          会问你要不要open access, 就是可以从ieee免费下载。
-          笔者私以为不用，直接挂arxiv也行的。
-      - source: guide
-        text: "超过6页要加钱。正常付款即可。用visa和master信用卡就行。"
+      - id: publication
+        title: "正式发表"
+        blocks:
+          - type: text
+            content: "缴费后，IEEE 会给一个临时的 **early access** 版本。然后在最近的一期 issue 正式刊登，一般就是**下个月**。"
 
-  - id: publication
-    title: "正式发表"
-    number: "9"
-    paragraphs:
-      - source: guide
-        text: "在交钱后，IEEE 一般会给一个临时的 early access 版本。然后会在最近的一期issue里正式刊登。一般就是下个月。"
-
-  - id: transfer
-    title: "会议 Transfer"
-    number: "10"
-    paragraphs:
-      - source: guide
-        text: "RAL承诺在提交初稿的6个月内会见刊。但其实transfer 是只要在accept的一瞬间就可以在RAS操作啦！"
-      - source: official
-        text: |
-          所有可以transfer的会议和时间看：
-          https://www.ieee-ras.org/publications/ra-l/
-          Upcoming conferences
-      - source: guide
-        text: "Transfer的会议不用审稿，直接accept。但是也要交注册费的。而且学生账号只能注册一个文章。"
+      - id: transfer
+        title: "会议 Transfer"
+        blocks:
+          - type: callout
+            variant: tip
+            content: "Accept 后**立刻**就可以在 RAS 系统操作 transfer！不需要等缴费或见刊。"
+          - type: list
+            items:
+              - "可 transfer 的会议和截止时间看官网 **Upcoming conferences**"
+              - "Transfer 的会议**不用审稿**，直接 accept"
+              - "但仍需交**注册费**，学生账号只能注册一篇"
+              - "RAL 承诺提交后 **6 个月内**见刊"

@@ -1,170 +1,216 @@
 import { getFullGuide } from '@/src/lib/guides'
-import type { GuideChapter, GuideParagraph, GuideLink } from '@/src/lib/guides'
-import SourceBadge from '@/components/SourceBadge'
+import type { GuideBlock, GuideChapter, GuidePhase } from '@/src/lib/guides'
 import GuideTOC from '@/components/GuideTOC'
 
 export const metadata = {
   title: 'RA-L 投稿攻略 — RoboIndex',
-  description: 'Ce Hao 的 RA-L 投稿全流程攻略，从期刊定位到会议 Transfer',
+  description: 'Ce Hao 的 RA-L 投稿全流程攻略',
 }
 
-function SourceDot({ source }: { source: string }) {
-  const colors: Record<string, string> = {
-    official: 'bg-blue-500',
-    guide: 'bg-violet-500',
-    community: 'bg-amber-500',
-  }
-  return <span className={`inline-block w-1.5 h-1.5 rounded-full ${colors[source] || 'bg-gray-400'} mr-2 mt-[7px] shrink-0`} />
+/* ── Markdown bold ── */
+function Md({ text }: { text: string }) {
+  const parts = text.split(/(\*\*.*?\*\*)/g)
+  return <>{parts.map((p, i) =>
+    p.startsWith('**') && p.endsWith('**')
+      ? <strong key={i} className="font-semibold text-text-primary">{p.slice(2, -2)}</strong>
+      : <span key={i}>{p}</span>
+  )}</>
 }
 
-function Paragraph({ p }: { p: GuideParagraph }) {
-  return (
-    <div className={`flex items-start gap-0 mb-4 ${p.important ? 'bg-red-50 border border-red-200 rounded-xl p-4 -mx-4' : ''}`}>
-      <SourceDot source={p.source} />
-      <div className="flex-1 min-w-0">
-        {p.heading && <h4 className="font-semibold text-text-primary mb-1">{p.heading}</h4>}
-        {p.important && <span className="text-[10px] font-bold uppercase tracking-wider text-red-500 mb-1 block">⚠️ 重要</span>}
-        <div className="text-[15px] text-text-primary leading-[1.8] whitespace-pre-line">{p.text}</div>
-      </div>
-    </div>
-  )
-}
+/* ── Block renderers ── */
 
-function LinkList({ links, label }: { links: GuideLink[]; label?: string }) {
-  return (
-    <div className="my-4 bg-surface-2 rounded-xl p-4">
-      {label && <div className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">{label}</div>}
-      <div className="space-y-2">
-        {links.map((link, i) => (
-          <div key={i} className="flex items-center gap-2 text-sm">
-            <span className="text-text-muted font-mono text-xs w-6 text-right shrink-0">{i + 1}.</span>
-            <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-accent-600 hover:underline break-all">
-              {link.label}
-            </a>
-            {link.note && <span className="text-text-muted text-xs">— {link.note}</span>}
-          </div>
-        ))}
-      </div>
-    </div>
-  )
-}
+function Block({ block }: { block: GuideBlock }) {
+  switch (block.type) {
+    case 'text':
+      return <p className="text-[15px] text-text-primary/85 leading-[1.9] mb-4"><Md text={block.content || ''} /></p>
 
-function BulletList({ items, label }: { items: GuideParagraph[]; label?: string }) {
-  return (
-    <div className="my-4">
-      {label && <div className="text-sm font-semibold text-text-secondary mb-3">{label}</div>}
-      <div className="space-y-2 ml-1">
-        {items.map((item, i) => (
-          <div key={i} className="flex items-start gap-2">
-            <span className="text-accent-500 mt-1 shrink-0 text-xs">▸</span>
-            <div className="flex-1">
-              <span className="text-[15px] text-text-primary leading-[1.7]">{item.text}</span>
-              <span className="ml-1.5 align-middle"><SourceBadge source={item.source} /></span>
+    case 'heading':
+      return <h4 className="text-[15px] font-semibold text-text-primary mt-8 mb-3 pb-2 border-b border-border-light/50">{block.content}</h4>
+
+    case 'quote':
+      return (
+        <blockquote className="my-5 border-l-[3px] border-accent-300 pl-5 py-2">
+          <p className="text-[13.5px] text-text-secondary leading-[1.85] italic">{block.content}</p>
+        </blockquote>
+      )
+
+    case 'list': {
+      const items = (block.items || []) as string[]
+      return (
+        <ul className="my-4 space-y-2.5">
+          {items.map((item, i) => (
+            <li key={i} className="flex items-start gap-3 text-[15px] text-text-primary/85 leading-[1.8]">
+              <span className="text-accent-400 mt-[3px] shrink-0 text-[13px] font-mono select-none">
+                {block.ordered ? `${i + 1}.` : '•'}
+              </span>
+              <span><Md text={item} /></span>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    case 'steps': {
+      const items = (block.items || []) as string[]
+      return (
+        <div className="my-6">
+          {items.map((item, i) => (
+            <div key={i} className="flex gap-4 pb-5 last:pb-0">
+              <div className="flex flex-col items-center">
+                <div className="w-7 h-7 rounded-full bg-accent-500 text-white text-[11px] font-bold flex items-center justify-center shrink-0 shadow-sm">
+                  {i + 1}
+                </div>
+                {i < items.length - 1 && <div className="w-px flex-1 bg-accent-200 mt-1" />}
+              </div>
+              <p className="text-[15px] text-text-primary/85 leading-[1.8] pt-0.5"><Md text={item} /></p>
             </div>
+          ))}
+        </div>
+      )
+    }
+
+    case 'links': {
+      const items = (block.items || []) as { label: string; url: string }[]
+      return (
+        <div className="my-5 rounded-xl border border-border-light divide-y divide-border-light overflow-hidden">
+          {items.map((link, i) => (
+            <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
+              className="flex items-center gap-3 px-5 py-3 hover:bg-surface-2/60 transition-colors group">
+              <span className="text-accent-400 font-mono text-xs font-medium shrink-0">{i + 1}</span>
+              <span className="text-[14px] text-text-primary group-hover:text-accent-600 transition-colors">{link.label}</span>
+              <span className="text-text-muted/40 text-xs ml-auto shrink-0 group-hover:text-text-muted transition-colors">↗</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+
+    case 'callout': {
+      const isWarning = block.variant === 'warning'
+      return (
+        <div className={`my-6 rounded-xl px-5 py-4 ${
+          isWarning
+            ? 'bg-red-50/70 border border-red-200/50'
+            : 'bg-emerald-50/60 border border-emerald-200/50'
+        }`}>
+          <div className="text-[14.5px] text-text-primary leading-[1.85] whitespace-pre-line">
+            <Md text={block.content || ''} />
           </div>
-        ))}
-      </div>
-    </div>
-  )
+        </div>
+      )
+    }
+
+    case 'compare':
+      return (
+        <div className="my-5 grid gap-2.5">
+          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-emerald-50/50 border border-emerald-200/40">
+            <span className="text-emerald-500 mt-0.5 shrink-0">✓</span>
+            <p className="text-[14px] text-text-primary leading-[1.75]"><Md text={block.good || ''} /></p>
+          </div>
+          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-50/40 border border-red-200/30">
+            <span className="text-red-400 mt-0.5 shrink-0">✗</span>
+            <p className="text-[14px] text-text-primary leading-[1.75]"><Md text={block.bad || ''} /></p>
+          </div>
+          {block.note && <p className="text-[13px] text-text-muted leading-relaxed px-1">{block.note}</p>}
+        </div>
+      )
+
+    default:
+      return null
+  }
 }
 
-function ChapterBlock({ chapter }: { chapter: GuideChapter }) {
+/* ── Chapter ── */
+function ChapterSection({ chapter }: { chapter: GuideChapter }) {
   return (
-    <section id={chapter.id} className="scroll-mt-24 mb-16 last:mb-0">
-      <div className="flex items-baseline gap-3 mb-6">
-        <span className="text-3xl font-bold text-border font-mono">{chapter.number}</span>
-        <h2 className="text-xl font-bold text-text-primary tracking-tight">{chapter.title}</h2>
-      </div>
-
-      {chapter.content && (
-        <p className="text-[15px] text-text-secondary leading-[1.8] mb-4">{chapter.content}</p>
-      )}
-
-      {chapter.paragraphs?.map((p, i) => <Paragraph key={i} p={p} />)}
-
-      {chapter.links && <LinkList links={chapter.links} />}
-      {chapter.reference_links && <LinkList links={chapter.reference_links} label="参考链接" />}
-
-      {chapter.items && <BulletList items={chapter.items} />}
-      {chapter.tips && <BulletList items={chapter.tips} label="💡 Tips" />}
-      {chapter.checklist && <BulletList items={chapter.checklist} label="✅ Checklist" />}
-
-      {chapter.paragraphs_after?.map((p, i) => <Paragraph key={`after-${i}`} p={p} />)}
+    <section id={chapter.id} className="scroll-mt-24 py-8 first:pt-0">
+      <h3 className="text-lg font-bold text-text-primary tracking-tight mb-5">{chapter.title}</h3>
+      {chapter.blocks.map((b, i) => <Block key={i} block={b} />)}
     </section>
   )
 }
 
-export default function GuidesPage() {
-  const guide = getFullGuide()
-  if (!guide) return <div>Guide not found</div>
-
-  const tocNodes = guide.chapters.map(ch => ({
-    id: ch.id,
-    label: `${ch.number}. ${ch.title}`,
-    icon: '',
-    children: [],
-  }))
+/* ── Phase ── */
+function PhaseSection({ phase, index }: { phase: GuidePhase; index: number }) {
+  const phaseLabels = ['Phase 1', 'Phase 2', 'Phase 3']
+  const phaseColors = [
+    'from-blue-500 to-blue-600',
+    'from-amber-500 to-orange-500',
+    'from-emerald-500 to-emerald-600',
+  ]
 
   return (
-    <main className="max-w-5xl mx-auto px-6 py-12">
-      {/* Hero */}
-      <div className="mb-14">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-500 mb-3">
-          Submission Guide
-        </p>
-        <h1 className="text-3xl font-bold tracking-tight text-text-primary leading-tight">
-          {guide.title}
-        </h1>
-        <p className="mt-3 text-[15px] text-text-secondary leading-relaxed max-w-2xl">
-          {guide.description}
-        </p>
-
-        <div className="mt-5 flex items-center gap-4 text-sm text-text-muted">
-          <span>
-            作者：<a href={guide.author_url} className="text-accent-600 hover:underline font-medium" target="_blank" rel="noopener noreferrer">{guide.author}</a>
-          </span>
-          <span className="text-border">|</span>
-          <span>更新：{guide.updated}</span>
+    <div id={phase.id} className="scroll-mt-24 mb-16 last:mb-0">
+      {/* Phase header */}
+      <div className="flex items-center gap-4 mb-8">
+        <div className={`px-3 py-1.5 rounded-lg bg-gradient-to-r ${phaseColors[index] || phaseColors[0]} text-white text-[11px] font-bold uppercase tracking-wider`}>
+          {phaseLabels[index] || `Phase ${index + 1}`}
         </div>
-
-        {/* Source legend */}
-        <div className="mt-5 flex items-center gap-6 text-xs text-text-muted">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-blue-500" /> 📋 IEEE 官方
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-violet-500" /> 📘 作者经验
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-500" /> 💬 社区讨论
-          </span>
+        <div>
+          <h2 className="text-xl font-bold text-text-primary tracking-tight">{phase.title}</h2>
+          <p className="text-[13px] text-text-muted mt-0.5">{phase.subtitle}</p>
         </div>
       </div>
 
-      {/* Layout: sidebar + content */}
-      <div className="flex gap-12">
+      {/* Chapters */}
+      <div className="divide-y divide-border-light/40">
+        {phase.chapters.map(ch => <ChapterSection key={ch.id} chapter={ch} />)}
+      </div>
+    </div>
+  )
+}
+
+/* ── Page ── */
+export default function GuidesPage() {
+  const guide = getFullGuide()
+  if (!guide) return <div className="p-12 text-center text-text-muted">Guide not found</div>
+
+  // Build TOC: phases as parent nodes, chapters as children
+  const tocNodes = guide.phases.map((phase, i) => ({
+    id: phase.id,
+    label: phase.title,
+    icon: '',
+    children: phase.chapters.map(ch => ({
+      id: ch.id,
+      label: ch.title,
+    })),
+  }))
+
+  return (
+    <main className="max-w-5xl mx-auto px-6 py-16">
+      {/* Hero */}
+      <header className="mb-14 max-w-2xl">
+        <h1 className="text-3xl font-bold tracking-tight text-text-primary mb-3">{guide.title}</h1>
+        <p className="text-[15px] text-text-secondary leading-relaxed mb-5">{guide.description}</p>
+        <div className="flex items-center gap-3 text-[13px] text-text-muted">
+          <a href={guide.author_url} className="font-medium text-text-primary hover:text-accent-600 transition-colors"
+            target="_blank" rel="noopener noreferrer">{guide.author}</a>
+          <span className="text-border">·</span>
+          <span>{guide.updated}</span>
+          <span className="text-border">·</span>
+          <a href="https://github.com/fly-pigTH/ral-skill" className="text-accent-500 hover:underline"
+            target="_blank" rel="noopener noreferrer">ral.skill</a>
+        </div>
+      </header>
+
+      {/* Layout */}
+      <div className="flex gap-14">
         <GuideTOC nodes={tocNodes} />
 
-        <div className="flex-1 min-w-0">
-          {guide.chapters.map(ch => (
-            <ChapterBlock key={ch.id} chapter={ch} />
+        <article className="flex-1 min-w-0">
+          {guide.phases.map((phase, i) => (
+            <PhaseSection key={phase.id} phase={phase} index={i} />
           ))}
 
-          {/* Footer */}
-          <div className="mt-16 p-6 rounded-2xl bg-surface-2 border border-border-light text-center">
-            <p className="text-sm text-text-secondary mb-3">
-              想要 AI 实时辅助？安装 ral.skill 在 Claude Code 中获取交互式投稿指导。
-            </p>
-            <a
-              href="https://github.com/fly-pigTH/ral-skill"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-text-primary text-surface-0 text-sm font-medium hover:opacity-90 transition-opacity"
-            >
-              GitHub: ral.skill →
+          {/* CTA */}
+          <div className="mt-14 py-8 text-center border-t border-border-light">
+            <p className="text-sm text-text-muted mb-4">想要 AI 实时辅助投稿？</p>
+            <a href="https://github.com/fly-pigTH/ral-skill" target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-text-primary text-surface-0 text-sm font-medium hover:opacity-90 transition-opacity">
+              安装 ral.skill →
             </a>
           </div>
-        </div>
+        </article>
       </div>
     </main>
   )
