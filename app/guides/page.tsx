@@ -1,40 +1,65 @@
-import { getAllGuides } from '@/src/lib/guides'
-import type { Guide, GuideSection } from '@/src/lib/guides'
+import { getFullGuide } from '@/src/lib/guides'
+import type { GuideChapter, GuideParagraph, GuideLink } from '@/src/lib/guides'
 import SourceBadge from '@/components/SourceBadge'
+import GuideTOC from '@/components/GuideTOC'
 
 export const metadata = {
-  title: 'RAL Submission Guide — RoboIndex',
-  description: 'Comprehensive RA-L submission guide with source attribution',
+  title: 'RA-L 投稿攻略 — RoboIndex',
+  description: 'Ce Hao 的 RA-L 投稿全流程攻略，从期刊定位到会议 Transfer',
 }
 
-function SectionBlock({ section, index }: { section: GuideSection; index: number }) {
+function SourceDot({ source }: { source: string }) {
+  const colors: Record<string, string> = {
+    official: 'bg-blue-500',
+    guide: 'bg-violet-500',
+    community: 'bg-amber-500',
+  }
+  return <span className={`inline-block w-1.5 h-1.5 rounded-full ${colors[source] || 'bg-gray-400'} mr-2 mt-[7px] shrink-0`} />
+}
+
+function Paragraph({ p }: { p: GuideParagraph }) {
   return (
-    <div className="mb-10 last:mb-0">
-      <div className="flex items-center gap-3 mb-4">
-        <div className="flex items-center justify-center w-7 h-7 rounded-full bg-accent-500 text-white text-xs font-bold">
-          {index + 1}
-        </div>
-        <h3 className="text-lg font-semibold text-text-primary">{section.heading}</h3>
+    <div className={`flex items-start gap-0 mb-4 ${p.important ? 'bg-red-50 border border-red-200 rounded-xl p-4 -mx-4' : ''}`}>
+      <SourceDot source={p.source} />
+      <div className="flex-1 min-w-0">
+        {p.heading && <h4 className="font-semibold text-text-primary mb-1">{p.heading}</h4>}
+        {p.important && <span className="text-[10px] font-bold uppercase tracking-wider text-red-500 mb-1 block">⚠️ 重要</span>}
+        <div className="text-[15px] text-text-primary leading-[1.8] whitespace-pre-line">{p.text}</div>
       </div>
-      <div className="ml-10 space-y-3">
-        {section.items.map((item, i) => (
-          <div
-            key={i}
-            className="flex items-start gap-3 p-3 rounded-xl bg-surface-2/50 hover:bg-surface-2 transition-colors"
-          >
-            <div className="mt-0.5 shrink-0">
-              {item.source === 'official' && <span className="text-blue-500 text-sm">📋</span>}
-              {item.source === 'guide' && <span className="text-violet-500 text-sm">📘</span>}
-              {item.source === 'community' && <span className="text-amber-500 text-sm">💬</span>}
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-sm text-text-primary leading-relaxed">{item.text}</p>
-              {item.text_en && (
-                <p className="text-xs text-text-muted mt-1 leading-relaxed">{item.text_en}</p>
-              )}
-            </div>
-            <div className="shrink-0 mt-0.5">
-              <SourceBadge source={item.source} url={item.url} />
+    </div>
+  )
+}
+
+function LinkList({ links, label }: { links: GuideLink[]; label?: string }) {
+  return (
+    <div className="my-4 bg-surface-2 rounded-xl p-4">
+      {label && <div className="text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">{label}</div>}
+      <div className="space-y-2">
+        {links.map((link, i) => (
+          <div key={i} className="flex items-center gap-2 text-sm">
+            <span className="text-text-muted font-mono text-xs w-6 text-right shrink-0">{i + 1}.</span>
+            <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-accent-600 hover:underline break-all">
+              {link.label}
+            </a>
+            {link.note && <span className="text-text-muted text-xs">— {link.note}</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function BulletList({ items, label }: { items: GuideParagraph[]; label?: string }) {
+  return (
+    <div className="my-4">
+      {label && <div className="text-sm font-semibold text-text-secondary mb-3">{label}</div>}
+      <div className="space-y-2 ml-1">
+        {items.map((item, i) => (
+          <div key={i} className="flex items-start gap-2">
+            <span className="text-accent-500 mt-1 shrink-0 text-xs">▸</span>
+            <div className="flex-1">
+              <span className="text-[15px] text-text-primary leading-[1.7]">{item.text}</span>
+              <span className="ml-1.5 align-middle"><SourceBadge source={item.source} /></span>
             </div>
           </div>
         ))}
@@ -43,93 +68,102 @@ function SectionBlock({ section, index }: { section: GuideSection; index: number
   )
 }
 
-function GuideDocument({ guide }: { guide: Guide }) {
+function ChapterBlock({ chapter }: { chapter: GuideChapter }) {
   return (
-    <section className="bg-surface-1 rounded-2xl border border-border-light overflow-hidden">
-      <div className="p-8 pb-0">
-        <h2 className="text-xl font-bold text-text-primary">{guide.title}</h2>
-        {guide.title_en && (
-          <p className="text-sm text-text-muted mt-1">{guide.title_en}</p>
-        )}
-        <div className="mt-3 mb-6 h-px bg-border-light" />
+    <section id={chapter.id} className="scroll-mt-24 mb-16 last:mb-0">
+      <div className="flex items-baseline gap-3 mb-6">
+        <span className="text-3xl font-bold text-border font-mono">{chapter.number}</span>
+        <h2 className="text-xl font-bold text-text-primary tracking-tight">{chapter.title}</h2>
       </div>
-      <div className="px-8 pb-8">
-        {guide.sections.map((section, i) => (
-          <SectionBlock key={i} section={section} index={i} />
-        ))}
-      </div>
+
+      {chapter.content && (
+        <p className="text-[15px] text-text-secondary leading-[1.8] mb-4">{chapter.content}</p>
+      )}
+
+      {chapter.paragraphs?.map((p, i) => <Paragraph key={i} p={p} />)}
+
+      {chapter.links && <LinkList links={chapter.links} />}
+      {chapter.reference_links && <LinkList links={chapter.reference_links} label="参考链接" />}
+
+      {chapter.items && <BulletList items={chapter.items} />}
+      {chapter.tips && <BulletList items={chapter.tips} label="💡 Tips" />}
+      {chapter.checklist && <BulletList items={chapter.checklist} label="✅ Checklist" />}
+
+      {chapter.paragraphs_after?.map((p, i) => <Paragraph key={`after-${i}`} p={p} />)}
     </section>
   )
 }
 
 export default function GuidesPage() {
-  const guides = getAllGuides()
+  const guide = getFullGuide()
+  if (!guide) return <div>Guide not found</div>
 
-  // Sort: writing first, then format, rebuttal, timeline
-  const order = ['writing', 'format', 'rebuttal', 'timeline', 'fun']
-  guides.sort((a, b) => order.indexOf(a.category) - order.indexOf(b.category))
+  const tocNodes = guide.chapters.map(ch => ({
+    id: ch.id,
+    label: `${ch.number}. ${ch.title}`,
+    icon: '',
+    children: [],
+  }))
 
   return (
-    <main className="max-w-4xl mx-auto px-6 py-12">
+    <main className="max-w-5xl mx-auto px-6 py-12">
       {/* Hero */}
-      <div className="mb-12 text-center">
-        <p className="text-sm font-medium text-accent-500 mb-2">SUBMISSION EXPERIENCE</p>
-        <h1 className="text-3xl font-bold tracking-tight text-text-primary">
-          RA-L 投稿攻略
-        </h1>
-        <p className="mt-3 text-text-secondary max-w-xl mx-auto">
-          基于 Ce Hao 的投稿攻略、社区讨论和 IEEE 官方信息蒸馏而成。
-          每条建议都标注了出处，让你知道哪些可以放心采纳。
+      <div className="mb-14">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-500 mb-3">
+          Submission Guide
         </p>
-        <div className="mt-4 flex items-center justify-center gap-6 text-xs text-text-muted">
-          <span className="flex items-center gap-1">📋 <span>IEEE 官方</span></span>
-          <span className="flex items-center gap-1">📘 <span>投稿攻略</span></span>
-          <span className="flex items-center gap-1">💬 <span>社区经验</span></span>
+        <h1 className="text-3xl font-bold tracking-tight text-text-primary leading-tight">
+          {guide.title}
+        </h1>
+        <p className="mt-3 text-[15px] text-text-secondary leading-relaxed max-w-2xl">
+          {guide.description}
+        </p>
+
+        <div className="mt-5 flex items-center gap-4 text-sm text-text-muted">
+          <span>
+            作者：<a href={guide.author_url} className="text-accent-600 hover:underline font-medium" target="_blank" rel="noopener noreferrer">{guide.author}</a>
+          </span>
+          <span className="text-border">|</span>
+          <span>更新：{guide.updated}</span>
         </div>
-        <div className="mt-3 text-xs text-text-muted">
-          作者：<a href="https://github.com/CeHao1" className="text-accent-500 hover:underline" target="_blank" rel="noopener noreferrer">Ce Hao</a>
-          {' · '}
-          AI 增强：<a href="https://github.com/fly-pigTH/ral-skill" className="text-accent-500 hover:underline" target="_blank" rel="noopener noreferrer">ral.skill</a>
+
+        {/* Source legend */}
+        <div className="mt-5 flex items-center gap-6 text-xs text-text-muted">
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-blue-500" /> 📋 IEEE 官方
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-violet-500" /> 📘 作者经验
+          </span>
+          <span className="flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-amber-500" /> 💬 社区讨论
+          </span>
         </div>
       </div>
 
-      {/* Quick nav */}
-      <div className="flex items-center justify-center gap-2 mb-10 flex-wrap">
-        {guides.map(g => {
-          const icons: Record<string, string> = { writing: '✍️', format: '📐', rebuttal: '🛡️', timeline: '⏱️', fun: '🎲' }
-          return (
+      {/* Layout: sidebar + content */}
+      <div className="flex gap-12">
+        <GuideTOC nodes={tocNodes} />
+
+        <div className="flex-1 min-w-0">
+          {guide.chapters.map(ch => (
+            <ChapterBlock key={ch.id} chapter={ch} />
+          ))}
+
+          {/* Footer */}
+          <div className="mt-16 p-6 rounded-2xl bg-surface-2 border border-border-light text-center">
+            <p className="text-sm text-text-secondary mb-3">
+              想要 AI 实时辅助？安装 ral.skill 在 Claude Code 中获取交互式投稿指导。
+            </p>
             <a
-              key={g.slug}
-              href={`#${g.slug}`}
-              className="px-3 py-1.5 rounded-full text-xs font-medium bg-surface-2 text-text-secondary hover:bg-accent-50 hover:text-accent-600 transition-colors"
+              href="https://github.com/fly-pigTH/ral-skill"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-text-primary text-surface-0 text-sm font-medium hover:opacity-90 transition-opacity"
             >
-              {icons[g.category] || '📄'} {g.title}
+              GitHub: ral.skill →
             </a>
-          )
-        })}
-      </div>
-
-      {/* Guide documents */}
-      <div className="space-y-8">
-        {guides.map(guide => (
-          <div key={guide.slug} id={guide.slug}>
-            <GuideDocument guide={guide} />
           </div>
-        ))}
-      </div>
-
-      {/* Footer CTA */}
-      <div className="mt-12 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface-2 text-sm text-text-secondary">
-          <span>想要 AI 实时辅助？</span>
-          <a
-            href="https://github.com/fly-pigTH/ral-skill"
-            className="font-medium text-accent-500 hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            安装 ral.skill →
-          </a>
         </div>
       </div>
     </main>
