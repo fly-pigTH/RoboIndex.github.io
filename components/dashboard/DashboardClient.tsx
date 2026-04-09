@@ -17,9 +17,10 @@ export default function DashboardClient() {
   function fetchData() {
     setLoading(true)
     setError(null)
+    const base = process.env.NEXT_PUBLIC_BASE_PATH || ''
     Promise.all([
-      fetch('/api/stats.json').then(r => { if (!r.ok) throw new Error('Failed to load stats'); return r.json() }),
-      fetch('/api/papers.json').then(r => { if (!r.ok) throw new Error('Failed to load papers'); return r.json() }),
+      fetch(`${base}/api/stats.json`).then(r => { if (!r.ok) throw new Error('Failed to load stats'); return r.json() }),
+      fetch(`${base}/api/papers.json`).then(r => { if (!r.ok) throw new Error('Failed to load papers'); return r.json() }),
     ])
       .then(([s, p]: [Stats, PaperIndex]) => {
         setStats(s)
