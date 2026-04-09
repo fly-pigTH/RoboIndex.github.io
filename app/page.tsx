@@ -24,7 +24,7 @@ export default function Home() {
           <p className="text-xl text-text-secondary font-light">
             Structured robotics research paper data
           </p>
-          <div className="flex justify-center flex-wrap gap-2 pt-1">
+          <div className="flex justify-center items-center flex-wrap gap-2 pt-1">
             {venues.map(v => (
               <span
                 key={v.name}
@@ -37,6 +37,9 @@ export default function Home() {
                 {v.name}
               </span>
             ))}
+            <span className="px-2.5 py-0.5 rounded border border-dashed border-text-muted text-[10px] text-text-muted">
+              coming soon
+            </span>
           </div>
         </div>
 
