@@ -43,19 +43,13 @@ body {
   background: linear-gradient(
     135deg,
     #d97757 0%,
-    #d97757 14%,
     #3b82f6 20%,
-    #3b82f6 30%,
-    #10b981 36%,
-    #10b981 47%,
-    #8b5cf6 53%,
-    #8b5cf6 62%,
-    #f43f5e 68%,
-    #f43f5e 78%,
-    #f59e0b 84%,
+    #10b981 40%,
+    #8b5cf6 60%,
+    #f43f5e 80%,
     #f59e0b 100%
   );
-  background-size: 200% 100%;
+  background-size: 300% 100%;
   animation: venue-gradient-shift 6s ease-in-out infinite alternate;
 }
 
