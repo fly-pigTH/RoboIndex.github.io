@@ -1,0 +1,14 @@
+title: ba-mdslam
+venue: RA-L
+year: 2023
+authors: []
+abstract: Photometric SLAM and Bundle Adjustment for RGB-D and LiDAR in CUDA.
+tags:
+  - lidar
+  - lidar-slam
+  - photometric
+  - photometric-bundle-adjustment
+  - photometric-lidar-slam
+repo: https://github.com/rvp-group/ba-mdslam
+arxiv: https://arxiv.org/abs/2203.13237
+date_added: 2026-04-09
