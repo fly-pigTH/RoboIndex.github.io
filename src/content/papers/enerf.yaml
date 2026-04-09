@@ -1,0 +1,10 @@
+title: E-NeRF
+venue: RA-L
+year: 2023
+authors: []
+abstract: "Implementation of E-NeRF: Neural Radiance Fields from a Moving Event
+  Camera (https://arxiv."
+tags: []
+repo: https://github.com/knelk/enerf
+arxiv: https://arxiv.org/abs/2208.11300
+date_added: 2026-04-09

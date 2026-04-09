@@ -1,0 +1,10 @@
+title: SDEVO
+venue: RA-L
+year: 2025
+authors: []
+abstract: This repository contains the code for our proposed algorithm Deep
+  Visual Odometry for Stereo Event Cameras, as presented in our paper.
+tags: []
+repo: https://github.com/NAIL-HNU/SDEVO
+arxiv: https://arxiv.org/abs/2509.08235
+date_added: 2026-04-09

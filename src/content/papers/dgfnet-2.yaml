@@ -1,0 +1,17 @@
+title: "DGFNet: Multi-Agent Trajectory Prediction with Difficulty-Guided Feature
+  Enhancement Network"
+venue: RA-L
+year: 2025
+authors: []
+abstract: "[RAL 2025]Multi-Agent Trajectory Prediction with Difficulty-Guided
+  Feature Enhancement Network-xinguipeng"
+tags:
+  - argoverse
+  - autonomous-driving
+  - behavior-prediction
+  - motion-forecasting
+  - multi-agent
+repo: https://github.com/chuduanfeng/dgfnet
+arxiv: https://arxiv.org/abs/2407.18551
+project_page: https://arxiv.org/abs/2407.18551
+date_added: 2026-04-09

@@ -1,0 +1,14 @@
+title: Pytorch Implementation of Stable Vector Fields on Lie Groups.
+venue: RA-L
+year: 2022
+authors: []
+abstract: Pytorch implementation of Stable Vector Fields on Lie Groups through
+  Diffeomorphism
+tags:
+  - control-systems
+  - dynamic-systems
+  - lie-groups
+  - motion-generation
+  - stability
+repo: https://github.com/robotgradient/LieFlows
+date_added: 2026-04-09

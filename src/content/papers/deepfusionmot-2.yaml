@@ -1,0 +1,12 @@
+title: News
+venue: RA-L
+year: 2022
+authors: []
+abstract: In the recent literature, on the one hand, many 3D multi-object
+  tracking (MOT) works have focused on tracking accuracy and neglected
+  computation speed, commonly by designing rather complex cost functions and
+  feature extractors.
+tags: []
+repo: https://github.com/hphnngcquan/DeepFusionMOT
+arxiv: https://arxiv.org/abs/2202.12100
+date_added: 2026-04-09

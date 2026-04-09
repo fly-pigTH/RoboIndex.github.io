@@ -1,0 +1,17 @@
+title: "V2X-Sim: Multi-Agent Collaborative Perception Dataset and Benchmark for
+  Autonomous Driving [RA-L 2022]"
+venue: RA-L
+year: 2022
+authors: []
+abstract: Vehicle-to-everything (V2X) communication techniques enable the
+  collaboration between a vehicle and any other entity in its surrounding, which
+  could fundamentally improve the perception system for autonomous driving.
+tags:
+  - benchmark
+  - collaborative-perception
+  - computer-vision
+  - dataset
+  - multi-robot-systems
+repo: https://github.com/ai4ce/V2X-Sim
+project_page: https://ai4ce.github.io/V2X-Sim
+date_added: 2026-04-09

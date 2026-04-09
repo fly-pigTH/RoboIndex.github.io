@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
 
       - name: Build
-        run: npm run build
+        run: npm run prebuild && npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:

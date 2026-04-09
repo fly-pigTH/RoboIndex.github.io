@@ -1,0 +1,15 @@
+title: R-VIO2
+venue: RA-L
+year: 2022
+authors: []
+abstract: Square-Root Robocentric Visual-Inertial Odometry with Online
+  Spatiotemporal Calibration
+tags:
+  - calibration
+  - float32
+  - icra
+  - iros
+  - ral
+repo: https://github.com/rpng/R-VIO2
+project_page: https://ieeexplore.ieee.org/document/9830847
+date_added: 2026-04-09

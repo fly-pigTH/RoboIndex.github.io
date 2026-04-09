@@ -1,0 +1,10 @@
+title: You need to configure the Conda environment in the CMakeLists file.
+venue: RA-L
+year: 2025
+authors: []
+abstract: "[RAL-25] GSORB-SLAM: Gaussian Splatting SLAM benefits from ORB
+  features and Transmittance information"
+tags: []
+repo: https://github.com/Aczheng-cai/GSORB-SLAM
+arxiv: https://arxiv.org/abs/2410.11356
+date_added: 2026-04-09

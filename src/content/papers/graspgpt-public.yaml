@@ -1,0 +1,13 @@
+title: An Official Code Implementation of GraspGPT & FoundationGrasp
+venue: RA-L
+year: 2023
+authors: []
+abstract: code implementation of GraspGPT and FoundationGrasp
+tags:
+  - deep-neural-networks
+  - grasp-planning
+  - large-language-models
+  - task-oriented-grasp
+repo: https://github.com/mkt1412/GraspGPT_public
+arxiv: https://arxiv.org/abs/2011.06431
+date_added: 2026-04-09

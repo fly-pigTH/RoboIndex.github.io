@@ -1,0 +1,10 @@
+title: Staircase Autonomy
+venue: RA-L
+year: 2025
+authors: []
+abstract: A complete ROS 2 package for real-time staircase perception using 3D
+  point cloud data.
+tags: []
+repo: https://github.com/Prassi07/staircase_autonomy
+project_page: https://www.prassi.me/bayesian-staircase-estimation
+date_added: 2026-04-09

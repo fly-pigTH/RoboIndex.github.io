@@ -1,0 +1,17 @@
+title: "Rofunc: The Full Process Python Package for Robot Learning from
+  Demonstration and Robot Manipulation"
+venue: RA-L
+year: 2022
+authors: []
+abstract: 🤖 The Full Process Python Package for Robot Learning from
+  Demonstration and Robot Manipulation
+tags:
+  - embodied-ai
+  - forward-kinematics
+  - humanoid
+  - humanoid-robots
+  - imitation-learning
+repo: https://github.com/Skylark0924/Rofunc
+arxiv: https://arxiv.org/abs/2205.05960
+project_page: https://rofunc.readthedocs.io
+date_added: 2026-04-09

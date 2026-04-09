@@ -90,8 +90,8 @@ function Block({ block }: { block: GuideBlock }) {
       return (
         <div className={`my-6 rounded-xl px-5 py-4 ${
           isWarning
-            ? 'bg-red-500/10 border border-red-500/20'
-            : 'bg-emerald-500/10 border border-emerald-500/20'
+            ? 'bg-accent-500/10 border border-accent-500/20'
+            : 'bg-accent-500/5 border border-accent-200/30'
         }`}>
           <div className="text-[14.5px] text-text-primary leading-[1.85] whitespace-pre-line">
             <Md text={block.content || ''} />
@@ -103,12 +103,12 @@ function Block({ block }: { block: GuideBlock }) {
     case 'compare':
       return (
         <div className="my-5 grid gap-2.5">
-          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-emerald-500/10 border border-emerald-500/15">
-            <span className="text-emerald-500 mt-0.5 shrink-0">✓</span>
+          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-accent-500/5 border border-accent-200/30">
+            <span className="text-accent-600 mt-0.5 shrink-0">✓</span>
             <p className="text-[14px] text-text-primary leading-[1.75]"><Md text={block.good || ''} /></p>
           </div>
-          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/15">
-            <span className="text-red-400 mt-0.5 shrink-0">✗</span>
+          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-surface-2 border border-border-light">
+            <span className="text-text-muted mt-0.5 shrink-0">✗</span>
             <p className="text-[14px] text-text-primary leading-[1.75]"><Md text={block.bad || ''} /></p>
           </div>
           {block.note && <p className="text-[13px] text-text-muted leading-relaxed px-1">{block.note}</p>}
@@ -133,17 +133,12 @@ function ChapterSection({ chapter }: { chapter: GuideChapter }) {
 /* ── Phase ── */
 function PhaseSection({ phase, index }: { phase: GuidePhase; index: number }) {
   const phaseLabels = ['Phase 1', 'Phase 2', 'Phase 3']
-  const phaseColors = [
-    'from-blue-500 to-blue-600',
-    'from-amber-500 to-orange-500',
-    'from-emerald-500 to-emerald-600',
-  ]
 
   return (
     <div id={phase.id} className="scroll-mt-24 mb-16 last:mb-0">
       {/* Phase header */}
       <div className="flex items-center gap-4 mb-8">
-        <div className={`px-3 py-1.5 rounded-lg bg-gradient-to-r ${phaseColors[index] || phaseColors[0]} text-white text-[11px] font-bold uppercase tracking-wider`}>
+        <div className="px-3 py-1.5 rounded-lg bg-accent-500 text-white text-[11px] font-bold uppercase tracking-wider">
           {phaseLabels[index] || `Phase ${index + 1}`}
         </div>
         <div>

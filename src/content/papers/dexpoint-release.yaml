@@ -1,0 +1,16 @@
+title: "DexPoint: Generalizable Point Cloud Reinforcement Learning for
+  Sim-to-Real Dexterous Manipulation"
+venue: RA-L
+year: 2022
+authors: []
+abstract: "DexPoint: Generalizable Point Cloud Reinforcement Learning for
+  Sim-to-Real Dexterous Manipulation, CoRL 2022"
+tags:
+  - dexterous-manipulation
+  - pointcloud
+  - reinforcement-learning
+  - sim2real
+repo: https://github.com/yzqin/dexpoint-release
+arxiv: https://arxiv.org/abs/2211.09423
+project_page: https://yzqin.github.io/dexpoint/
+date_added: 2026-04-09

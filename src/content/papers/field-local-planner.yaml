@@ -1,0 +1,14 @@
+title: Field Local Planner
+venue: RA-L
+year: 2022
+authors: []
+abstract: Local planners for ground robots
+tags:
+  - local-motion-planning
+  - local-planning
+  - locally-reactive-controller
+  - motion-primitives
+  - potential-fields
+repo: https://github.com/ori-drs/field_local_planner
+arxiv: https://arxiv.org/abs/1801.02854
+date_added: 2026-04-09

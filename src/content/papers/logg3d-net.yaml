@@ -1,0 +1,17 @@
+title: LoGG3D-Net
+venue: RA-L
+year: 2023
+authors: []
+abstract: '[ICRA 2022] The official repository for "LoGG3D-Net: Locally Guided
+  Global Descriptor Learning for 3D Place Recognition", In 2022 International
+  Conference on Robotics and Automation (ICRA), pp.'
+tags:
+  - 3d
+  - contrastive-loss
+  - learning
+  - lidar
+  - lidar-point-cloud
+repo: https://github.com/csiro-robotics/LoGG3D-Net
+arxiv: https://arxiv.org/abs/2109.08336
+project_page: https://ieeexplore.ieee.org/document/9811753
+date_added: 2026-04-09

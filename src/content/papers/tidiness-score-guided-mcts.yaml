@@ -1,0 +1,10 @@
+title: Tidiness Score-Guided Monte Carlo Tree Search (TSMCTS)
+venue: RA-L
+year: 2025
+authors: []
+abstract: We propose **Tidiness Score-Guided MCTS**, a planning framework for
+  multi-object rearrangement tasks where a robot must tidy a cluttered scene
+  without an explicit target arrangement.
+tags: []
+repo: https://github.com/rllab-snu/Tidiness-Score-Guided-MCTS
+date_added: 2026-04-09
