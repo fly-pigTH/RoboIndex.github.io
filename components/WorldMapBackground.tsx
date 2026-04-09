@@ -19,8 +19,20 @@ export default function WorldMapBackground() {
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
+      <defs>
+        {/* Radial mask: transparent in center (behind text), opaque at edges */}
+        <radialGradient id="mapFade" cx="50%" cy="50%" r="60%">
+          <stop offset="0%"   stopColor="white" stopOpacity="0.05" />
+          <stop offset="45%"  stopColor="white" stopOpacity="0.4"  />
+          <stop offset="100%" stopColor="white" stopOpacity="1"    />
+        </radialGradient>
+        <mask id="mapMask">
+          <rect width="1000" height="500" fill="url(#mapFade)" />
+        </mask>
+      </defs>
+
       {/* ── Continental outlines ── */}
-      <g fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round">
+      <g mask="url(#mapMask)" fill="none" stroke="currentColor" strokeWidth="0.8" strokeLinejoin="round" strokeLinecap="round">
 
         {/* North America */}
         <path d="
@@ -147,7 +159,7 @@ export default function WorldMapBackground() {
       </g>
 
       {/* ── City nodes — major robotics research hubs ── */}
-      <g className="city-nodes">
+      <g className="city-nodes" mask="url(#mapMask)">
         {CITIES.map((city) => (
           <g
             key={city.name}
