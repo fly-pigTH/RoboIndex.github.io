@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'media',
   content: [
     './app/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
@@ -24,18 +25,18 @@ const config: Config = {
           900: '#6b3628',
         },
         surface: {
-          0: '#faf9f5',
-          1: '#ffffff',
-          2: '#f5f3ee',
+          0: 'var(--surface-0)',
+          1: 'var(--surface-1)',
+          2: 'var(--surface-2)',
         },
         border: {
-          DEFAULT: '#e8e5de',
-          light: '#f0ede6',
+          DEFAULT: 'var(--border)',
+          light: 'var(--border-light)',
         },
         text: {
-          primary: '#1a1a1a',
-          secondary: '#5a5a5a',
-          muted: '#8a8a8a',
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          muted: 'var(--text-muted)',
         },
       },
     },

@@ -3,8 +3,8 @@ import type { GuideBlock, GuideChapter, GuidePhase } from '@/src/lib/guides'
 import GuideTOC from '@/components/GuideTOC'
 
 export const metadata = {
-  title: 'RA-L 投稿攻略 — RoboIndex',
-  description: 'Ce Hao 的 RA-L 投稿全流程攻略',
+  title: 'RA-L Submission Guide — RoboIndex',
+  description: 'Comprehensive RA-L submission guide by Ce Hao',
 }
 
 /* ── Markdown bold ── */
@@ -90,8 +90,8 @@ function Block({ block }: { block: GuideBlock }) {
       return (
         <div className={`my-6 rounded-xl px-5 py-4 ${
           isWarning
-            ? 'bg-red-50/70 border border-red-200/50'
-            : 'bg-emerald-50/60 border border-emerald-200/50'
+            ? 'bg-red-500/10 border border-red-500/20'
+            : 'bg-emerald-500/10 border border-emerald-500/20'
         }`}>
           <div className="text-[14.5px] text-text-primary leading-[1.85] whitespace-pre-line">
             <Md text={block.content || ''} />
@@ -103,11 +103,11 @@ function Block({ block }: { block: GuideBlock }) {
     case 'compare':
       return (
         <div className="my-5 grid gap-2.5">
-          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-emerald-50/50 border border-emerald-200/40">
+          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-emerald-500/10 border border-emerald-500/15">
             <span className="text-emerald-500 mt-0.5 shrink-0">✓</span>
             <p className="text-[14px] text-text-primary leading-[1.75]"><Md text={block.good || ''} /></p>
           </div>
-          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-50/40 border border-red-200/30">
+          <div className="flex items-start gap-3 px-4 py-3 rounded-lg bg-red-500/10 border border-red-500/15">
             <span className="text-red-400 mt-0.5 shrink-0">✗</span>
             <p className="text-[14px] text-text-primary leading-[1.75]"><Md text={block.bad || ''} /></p>
           </div>
@@ -204,10 +204,10 @@ export default function GuidesPage() {
 
           {/* CTA */}
           <div className="mt-14 py-8 text-center border-t border-border-light">
-            <p className="text-sm text-text-muted mb-4">想要 AI 实时辅助投稿？</p>
+            <p className="text-sm text-text-muted mb-4">Want AI-assisted submission guidance?</p>
             <a href="https://github.com/fly-pigTH/ral-skill" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-text-primary text-surface-0 text-sm font-medium hover:opacity-90 transition-opacity">
-              安装 ral.skill →
+              Install ral.skill →
             </a>
           </div>
         </article>

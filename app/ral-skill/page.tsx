@@ -69,7 +69,7 @@ export default function RalSkillPage() {
     <main className="max-w-4xl mx-auto px-6 py-12">
       {/* Hero */}
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 text-violet-600 text-xs font-medium mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 text-violet-500 text-xs font-medium mb-4">
           Claude Code Skill
         </div>
         <h1 className="text-4xl font-bold tracking-tight text-text-primary">
@@ -105,20 +105,20 @@ export default function RalSkillPage() {
           Three Sources, Fully Traceable
         </h2>
         <div className="grid grid-cols-3 gap-4">
-          <div className="text-center p-5 rounded-2xl bg-blue-50 border border-blue-100">
+          <div className="text-center p-5 rounded-2xl bg-blue-500/10 border border-blue-500/20">
             <div className="text-2xl mb-2">📋</div>
-            <div className="text-sm font-semibold text-blue-700">IEEE 官网</div>
-            <div className="text-xs text-blue-500 mt-1">权威 · 实时验证</div>
+            <div className="text-sm font-semibold text-blue-500">IEEE 官网</div>
+            <div className="text-xs text-blue-400 mt-1">权威 · 实时验证</div>
           </div>
-          <div className="text-center p-5 rounded-2xl bg-violet-50 border border-violet-100">
+          <div className="text-center p-5 rounded-2xl bg-violet-500/10 border border-violet-500/20">
             <div className="text-2xl mb-2">📘</div>
-            <div className="text-sm font-semibold text-violet-700">投稿攻略</div>
-            <div className="text-xs text-violet-500 mt-1">Ce Hao 撰写</div>
+            <div className="text-sm font-semibold text-violet-500">投稿攻略</div>
+            <div className="text-xs text-violet-400 mt-1">Ce Hao 撰写</div>
           </div>
-          <div className="text-center p-5 rounded-2xl bg-amber-50 border border-amber-100">
+          <div className="text-center p-5 rounded-2xl bg-amber-500/10 border border-amber-500/20">
             <div className="text-2xl mb-2">💬</div>
-            <div className="text-sm font-semibold text-amber-700">社区经验</div>
-            <div className="text-xs text-amber-500 mt-1">脱敏同行讨论</div>
+            <div className="text-sm font-semibold text-amber-500">社区经验</div>
+            <div className="text-xs text-amber-400 mt-1">脱敏同行讨论</div>
           </div>
         </div>
       </div>

@@ -4,6 +4,32 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode (default) */
+:root {
+  --surface-0: #faf9f5;
+  --surface-1: #ffffff;
+  --surface-2: #f5f3ee;
+  --border: #e8e5de;
+  --border-light: #f0ede6;
+  --text-primary: #1a1a1a;
+  --text-secondary: #5a5a5a;
+  --text-muted: #8a8a8a;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface-0: #111111;
+    --surface-1: #1a1a1a;
+    --surface-2: #222222;
+    --border: #2e2e2e;
+    --border-light: #252525;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --text-muted: #666666;
+  }
+}
+
 body {
   @apply bg-surface-0 text-text-primary antialiased;
   -webkit-font-smoothing: antialiased;
@@ -11,5 +37,5 @@ body {
 }
 
 ::selection {
-  background: rgba(217, 119, 87, 0.2);
+  background: rgba(217, 119, 87, 0.3);
 }
