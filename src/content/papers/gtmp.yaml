@@ -1,0 +1,10 @@
+title: GTMP - Global Tensor Motion Planning
+venue: RA-L
+year: 2025
+authors: []
+abstract: Implementation of GTMP in JAX, RA-L 2025 & ICRA 2026.
+tags: []
+repo: https://github.com/anindex/gtmp
+arxiv: https://arxiv.org/abs/2411.19393
+project_page: https://sites.google.com/view/gtmp/home
+date_added: 2026-04-28
