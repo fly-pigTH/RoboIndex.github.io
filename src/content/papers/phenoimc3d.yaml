@@ -1,0 +1,12 @@
+title: "PhenoIMC3D: Iterative Motion Compensation for Canonical 3D
+  Reconstruction (RA-L 2026)"
+venue: RA-L
+year: 2026
+authors: []
+abstract: Official implementation of "Iterative Motion Compensation for
+  Canonical 3D Reconstruction From UAV Plant Images Captured in Windy
+  Conditions"
+tags: []
+repo: https://github.com/AIS-Bonn/PhenoIMC3D
+arxiv: https://arxiv.org/abs/2510.15491
+date_added: 2026-04-29

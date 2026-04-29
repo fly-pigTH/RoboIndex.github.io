@@ -1,0 +1,16 @@
+title: for example
+venue: RA-L
+year: 2021
+authors: []
+abstract: "[RA-L 2023, 2025] Model predictive control and trajectory
+  optimization for fast nonprehensile object transportation with a mobile
+  manipulator."
+tags:
+  - control
+  - mobile-manipulation
+  - mpc
+  - planning
+repo: https://github.com/learnsyslab/upright
+arxiv: https://arxiv.org/abs/2305.17484
+project_page: https://arxiv.org/abs/2305.17484
+date_added: 2026-04-29

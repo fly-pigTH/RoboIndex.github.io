@@ -1,0 +1,14 @@
+title: get patched version
+venue: RA-L
+year: 2023
+authors: []
+abstract: "[RA-L 2024] Quasistatic robotic planar pushing with single-point
+  contact using force feedback."
+tags:
+  - control
+  - mobile-manipulation
+  - pushing
+repo: https://github.com/learnsyslab/force_push
+arxiv: https://arxiv.org/abs/2401.17517
+project_page: https://arxiv.org/abs/2401.17517
+date_added: 2026-04-29

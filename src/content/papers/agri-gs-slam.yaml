@@ -1,0 +1,17 @@
+title: "🚜 AgriGS-SLAM: Orchard Mapping Across Seasons via Multi-View Gaussian
+  Splatting SLAM [RA-L 2026]"
+venue: RA-L
+year: 2026
+authors: []
+abstract: "[IEEE RA-L 2026] AgriGS-SLAM: Orchard Mapping Across Seasons via
+  Multi-View Gaussian Splatting SLAM"
+tags:
+  - 3d-reconstruction
+  - agriculture
+  - agriculture-research
+  - computer-vison
+  - gaussian-splatting
+repo: https://github.com/AIRLab-POLIMI/agri-gs-slam
+arxiv: https://arxiv.org/abs/2510.26358
+project_page: https://doi.org/10.1109/LRA.2026.3685453
+date_added: 2026-04-29
