@@ -1,0 +1,16 @@
+title: safe-control-gym
+venue: RA-L
+year: 2022
+authors: []
+abstract: PyBullet CartPole and Quadrotor environments—with CasADi symbolic a
+  priori dynamics—for learning-based control and RL
+tags:
+  - cartpole
+  - casadi
+  - control
+  - gym
+  - pybullet
+repo: https://github.com/learnsyslab/safe-control-gym
+arxiv: https://arxiv.org/abs/2108.06266
+project_page: https://www.dynsyslab.org/safe-robot-learning/
+date_added: 2026-04-30
