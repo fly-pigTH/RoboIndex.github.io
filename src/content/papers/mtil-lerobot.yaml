@@ -1,0 +1,10 @@
+title: MTIL-LeRobot
+venue: RA-L
+year: 2025
+authors: []
+abstract: A LeRobot implementation of Mamba Temporal Imitation Learning (MTIL),
+  based on Zhou et al.
+tags: []
+repo: https://github.com/hovak101/MTIL-Lerobot
+arxiv: https://arxiv.org/abs/2505.12410
+date_added: 2026-05-10
